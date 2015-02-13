@@ -1,0 +1,665 @@
+/*//////////////////////////////  Miscellaneous Styles  /////////////////////////////////*/
+
+/* -----------------------------------------------
+   Misc Styles
+------------------------------------------------- */
+
+.white-link-text a {
+	color: #fff !important;
+	text-decoration: none;
+}
+.white-link-text a:hover, a:focus {
+	text-decoration: none !important;
+}
+
+.mobile-hide{
+	display:none;
+}
+
+@media (min-width: 768px) {
+.mobile-hide{
+	display: block;
+}
+}
+
+
+/* -----------------------------------------------
+   Other Block Styles
+------------------------------------------------- */
+
+.other-block {
+	background-color: #fff;
+}
+.other-block .container {
+	min-height: 300px;
+	padding: 20px 20px 30px 20px;
+}
+.other-block .container h1 {
+	margin-top: 0px;
+}
+.other-block .container a {
+	color: #156abd;
+	text-decoration: none;
+}
+.other-block .container a:hover, a:focus {
+	text-decoration: underline;
+}
+.other-subnav-hldr {
+	display:none;
+}
+.about-img-hldr {
+	text-align:center;
+	padding:20px 0 20px 0;
+}
+
+.leaders {
+	border-top: 1px solid #D5D5D5;
+	overflow: hidden;
+	margin: 0;
+}
+
+.leaders p {
+	margin-left: 130px;
+}
+
+.headshot {
+	margin: 0px 30px 0px 0;
+}
+.headshot-experts {
+	margin: 0px 30px 10px 0;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:0px 1px 1px 1px;
+}
+.misce-title {
+	background-color: #0C4E77;
+	padding:5px 0 7px 10px;
+	color:#fff;
+	font-size:16px;
+}
+.misce-list li {
+	padding: 0px 0px 15px 0;
+}
+.misce-btn a {
+	color:#FFF !important;
+	text-decoration:none !important;
+}
+.pdfCol {
+	width: 30px;
+}
+.dateCol {
+	width: 100px;
+}
+.alert-forms {
+	padding: 7px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+.flash-crdit-meter {
+	display: none;
+}
+.est-second-dropdown {
+	padding-top: 10px;
+}
+.available-position-hldr {
+	background-color: #ecedf1;
+	padding:20px;
+}
+.careers-banner-hldr {
+	display: none;
+}
+.card-tool-hldr {
+	border: 1px solid #ccc;
+	padding: 0px 15px 15px 15px;
+	margin-top:15px;
+}
+.card-tool-hldr h2 {
+	font-size:16px;
+	font-weight:bold;
+}
+.card-tool-hldr p {
+	min-height:100px;
+}
+.misce-description {
+	display: none;
+}
+.cal-right-rutter h2 {
+	font-size:14px;
+	font-weight:bold;
+	padding: 0px 0px 5px 0px;
+	margin-top:0;
+}
+.cal-right-rutter li {
+	font-size:14px;
+	padding: 0px 0px 5px 0px;
+}
+.cal-fb-other-hldr {
+	display: none;
+}
+.cse-meter {
+	display:none;
+}
+
+ @media (min-width: 768px) {
+.other-block .container {
+	min-height: 300px;
+	padding: 20px 0px 30px 0px;
+}
+.other-subnav-hldr {
+	padding:15px 0 0px 0;
+	display:block;
+}
+.breadcrumb-other {
+	padding: 8px 0px;
+	margin-bottom: 20px;
+	list-style: none;
+	background-color: #fff;
+	border-radius: 4px;
+	display:block;
+}
+.breadcrumb-other > li {
+	display: inline-block;
+	padding:0 5px 0 0px;
+}
+.breadcrumb-other > li a {
+	padding:0 5px 0 0px;
+}
+.breadcrumb-other > li + li:before {
+	padding: 0 10px;
+	color: #cccccc;
+}
+.breadcrumb-other > .active {
+	color: #777777;
+}
+.card-tool-hldr p {
+	min-height:120px;
+}
+.flash-crdit-meter {
+	display: block;
+}
+.careers-banner-hldr {
+	display: block;
+}
+.misce-description {
+	display: block;
+}
+.cal-fb-other-hldr {
+	display: block;
+}
+.cse-meter {
+	padding:0px 0 0px 0;
+	display:block;
+}
+}
+
+/* -----------------------------------------------
+   Site Map Styles
+------------------------------------------------- */
+
+.dl-horizontal-sitemap dd:before, .dl-horizontal-sitemap dd:after, {
+ content: " ";
+ display: table;
+}
+.dl-horizontal-sitemap dd:after {
+	clear: both;
+}
+.dl-horizontal-sitemap dd {
+	margin-bottom:10px;
+}
+.dl-horizontal-sitemap hr {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+ @media (min-width: 768px) {
+.dl-horizontal-sitemap dt {
+	float: left;
+	width: 360px;
+	clear: left;
+	text-align: left;
+/*	white-space: nowrap;
+*/	padding-right:20px;
+	margin-bottom:5px;
+}
+.dl-horizontal-sitemap dd {
+	margin-left: 400px;
+	margin-bottom:5px;
+	width: 360px;
+}
+}
+
+/* -----------------------------------------------
+   Media Styles
+------------------------------------------------- */
+
+.media {
+	margin-top: 15px;
+}
+.media:first-child {
+	margin-top: 0;
+}
+.media-right, .media > .pull-right {
+	padding-left: 10px;
+}
+.media-left, .media > .pull-left {
+	padding-right: 10px;
+}
+.media-left, .media-right, .media-body {
+	display: table-cell;
+	vertical-align: top;
+}
+.media-middle {
+	vertical-align: middle;
+}
+.media-bottom {
+	vertical-align: bottom;
+}
+.media-heading {
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+.media-list {
+	padding-left: 0;
+	list-style: none;
+}
+
+/* -----------------------------------------------
+   Calculator Styles
+------------------------------------------------- */
+
+.cal-offers-hldr {
+	background-color: #fff;
+	margin-bottom: 30px;
+	border: 1px solid #dcdcdc;
+}
+.cal-offers-hldr > h2 {
+	text-align:left;
+	padding: 0px 10px 0px 10px;
+	height:40px;
+	font-size:14px;
+	font-weight:bold;
+	display:block;
+	line-height:20px;
+}
+.cal-offers-hldr > p {
+	text-align:left;
+	padding: 0px 10px 30px 10px;
+	font-size:13px;
+	display:block;
+	line-height:20px;
+}
+
+.cal-offers-hldr > .cal-bottom > a {
+	padding: 15px 15px 15px 15px;
+	background-color:#439e5b;
+	font-size:16px;
+	color:#fff;
+	display:block;
+	text-align:center;
+}
+
+.cal-offers-hldr .cal-bottom a:hover, a:focus {
+	text-decoration: underline;
+}
+
+ @media (min-width: 768px) {
+.other-block .container {
+	min-height: 300px;
+	padding: 20px 0px 30px 0px;
+}
+}
+
+ @media (min-width: 992px) {
+.cal-offers-hldr > p {
+	text-align:left;
+	padding: 15px 10px 30px 10px;
+	height:250px;
+	font-size:13px;
+	display:block;
+	line-height:20px;
+}
+}
+
+ @media (min-width: 1200px) {
+.cal-offers-hldr > p {
+	text-align:left;
+	padding: 0px 10px 30px 10px;
+	height:200px;
+	font-size:13px;
+	display:block;
+	line-height:20px;
+}
+}
+
+/* -----------------------------------------------
+   Dark Blue Styles
+------------------------------------------------- */
+
+.panel-misceblue {
+}
+.panel-misceblue > .panel-heading {
+	color: #fff;
+	background-color: #0C4E77;
+	font-size:13px;
+	font-weight:bold;
+	padding: 10px 0px 10px 0px;
+	text-align:center;
+	border-bottom: 0px solid #66c0ff;
+}
+.panel-misceblue > .panel-heading + .panel-collapse > .panel-body {
+}
+.panel-misceblue > .panel-body {
+	background-color:#fff;
+	padding: 10px 10px 10px 10px;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:0px 1px 1px 1px;
+}
+.panel-misceblue > .panel-body li {
+	padding: 0px 0px 20px 0px;
+	font-size:18px;
+}
+
+ @media (min-width: 768px) {
+.panel-misceblue > .panel-heading {
+	color: #fff;
+	background-color: #072d44;
+	font-size:16px;
+	font-weight:bold;
+	padding: 10px 0px 10px 10px;
+	text-align:left;
+	border-bottom: 0px solid #66c0ff;
+}
+}
+
+ @media (min-width: 992px) {
+.panel-misceblue > .panel-heading {
+	color: #fff;
+	background-color: #0C4E77;
+	font-size:13px;
+	font-weight:bold;
+	padding: 20px 0px 20px 0px;
+	text-align:center;
+	border-bottom: 0px solid #66c0ff;
+}
+}
+
+ @media (min-width: 1200px) {
+.panel-misceblue > .panel-heading {
+	color: #fff;
+	background-color: #0C4E77;
+	font-size:16px;
+	font-weight:bold;
+	padding: 10px 0px 10px 0px;
+	text-align:center;
+	border-bottom: 0px solid #66c0ff;
+}
+}
+
+/* -----------------------------------------------
+   Dark Blue Panel No Styles
+------------------------------------------------- */
+
+.panel-misce-nopadding {
+}
+.panel-misce-nopadding > .panel-heading {
+	color: #fff;
+	background-color: #0C4E77;
+	font-size:16px;
+	font-weight:bold;
+	padding: 10px 0px 10px 10px;
+	text-align:left;
+}
+.panel-misce-nopadding > .panel-heading + .panel-collapse > .panel-body {
+}
+.panel-misce-nopadding > .panel-body {
+	background-color:#fff;
+	padding: 0px;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:0px 1px 1px 1px;
+}
+
+/* -----------------------------------------------
+   Customer Support Styles
+------------------------------------------------- */
+
+#show-customer-support-form {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* -----------------------------------------------
+   Experts Styles
+------------------------------------------------- */
+
+.expert-name, .expert-column {
+	font-size: 14px;
+	display: block;
+	padding: 5px 0;
+}
+#experts-list > li img {
+	margin: auto;
+	text-align: center;
+	display:block;
+}
+#experts-list > li span {
+	text-align: center;
+}
+#experts-list > li {
+	width: 160px;
+}
+
+/* -----------------------------------------------
+   Newsletter Sign-up Styles
+------------------------------------------------- */
+
+#newsletter-archive > ol {
+	padding: 0;
+}
+#newsletter-archive > ol > li {
+	list-style: none;
+	display: block;
+	background-color: #EEEEEA;
+	margin-bottom: .8em;
+	padding: .8em;
+}
+#newsletter-archive > ol > li:hover {
+	background-color: #E4E4E4
+}
+#newsletter-archive > ol > li > a > h2 {
+	margin-top: 0 !important;
+}
+#newsletter-archive > ol > li > a {
+	display: block;
+	text-decoration: none;
+	overflow: hidden;
+}
+#newsletter-archive > ol > li > a > img {
+	display: block;
+	float:left;
+	clear: left;
+}
+#newsletter-archive > ol > li > a > strong, #newsletter-archive ol > li > a > p {
+	display: block;
+	clear: right;
+	margin-left: 4.8em;
+}
+#newsletter-archive > ol > li > a > strong {
+	padding-bottom: 0.3em
+}
+#newletter-pages-divider {
+	margin-top: 6em;
+	margin-bottom: 3em;
+}
+
+/* -----------------------------------------------
+   Welcome Styles
+------------------------------------------------- */
+
+#card-type-listing {
+	list-style-type: none;
+}
+.card-type-description {
+	padding-left: 2.5em;
+}
+
+/* -----------------------------------------------
+   Breakroom Styles
+------------------------------------------------- */
+
+#breakroom-banner {
+	background: url('/images/breakroom_banner.jpg') left top no-repeat;
+	display: block;
+	height: 160px;
+}
+#breakroom-banner-text {
+	padding-left: 36em;
+	padding-top: .5em;
+}
+.youtube-video {
+	margin-top: 3em;
+}
+.youtube-video iframe {
+	clear: both;
+}
+.video-subtitle {
+	width: 480px;
+	padding-top:1em;
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+/* -----------------------------------------------
+   Now Loading Spinner Styles
+------------------------------------------------- */
+
+#loading-container {
+	padding: 100px 0 200px 0;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}
+#loading {
+	font-size: 1.5em;
+}
+#spinner-icon {
+	margin-top: 30px;
+}
+
+/* -----------------------------------------------
+   Privacy Styles
+------------------------------------------------- */
+
+.btn-group-justified {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: separate;
+	border-color: #adadad;
+	border-style: solid;
+	border-width:1px 0px 1px 1px;
+}
+.btn-group-justified > .btn, .btn-group-justified > .btn-group {
+	float: none;
+	display: table-cell;
+	width: 1%;
+	border-right: 1px solid #adadad;
+}
+.btn-group-justified > .btn-group .btn {
+	width: 100%;
+	background-color: #eee;
+}
+.btn-group-justified > .btn-group .dropdown-menu {
+	left: auto;
+}
+.btn-group-justified > .btn-default {
+	color: #333333;
+	background-color: #eee;
+	border-right-color: #adadad;
+	border-right-width:1px;
+	border-right-style:solid;
+}
+.btn-group-justified > .btn-default:hover, .btn-group-justified > .btn-default:focus, .btn-group-justified > .btn-default:active, .btn-group-justified > .btn-default.active, .btn-group-justified > .open > .dropdown-toggle.btn-default {
+	background-color: #e6e6e6;
+	border-color:#adadad;
+	border-width:1px;
+	border-style:solid;
+	text-decoration:none !important;
+}
+
+/* -----------------------------------------------
+   Personal Loans Styles
+------------------------------------------------- */
+
+.personal-header-hldr {
+    padding: 10px 0 10px 0;
+}
+.personal-header-hldr i {
+    float: left;
+    margin: 7px 20px 0px 0;
+	color:#0C4E77;
+}
+.personal-header-hldr h2{
+	margin:0;
+	padding:0 0 10px 0;
+}
+.loan-hldr{
+	border: 1px solid #dcdcdc;
+	padding:10px 10px 10px 10px;
+	margin:20px 0 20px 0;
+}
+.loan-hldr h2{
+	margin:0px 0px 25px 0px;
+	font-size:18px;
+	font-weight:bold;
+}
+.loan-logo-btn-hldr{
+}
+.loan-logo-btn-hldr .loan-btn{
+    padding: 30px 0 20px 0;
+}
+.loan-logo-btn-hldr .loan-btn a{
+	text-decoration:none;
+	color:#fff;
+}
+.loan-logo-btn-hldr .loan-btn a:hover, a:focus{
+	text-decoration:none;
+	color:#fff;
+}
+.loan-content-hldr{
+	
+}
+.card-category-disclosure-hldr{
+    padding: 20px 0px 5px 0px;
+}
+
+/* -----------------------------------------------
+   Newsletter Styles
+------------------------------------------------- */
+
+.newletter-img-hide{
+	display:none;
+}
+
+@media (min-width: 768px) {
+.newletter-img-hide{
+	display:none;
+}
+}
+
+@media (min-width: 992px) {
+.newletter-img-hide{
+	display: block;
+}
+}
+
+
+
+
+
+
+
+

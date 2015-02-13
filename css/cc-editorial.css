@@ -1,0 +1,627 @@
+/*//////////////////////////////  Editorial Styles  /////////////////////////////////*/
+
+/* -----------------------------------------------
+   Misc Styles
+------------------------------------------------- */
+
+.mobile-show-hide{
+	display:none;
+}
+
+@media (min-width: 768px) {
+.mobile-show-hide{
+	display: block;
+}
+}
+
+/* -----------------------------------------------
+   Styles for displaying elements between "Desktop" and "Mobile" devices*/
+
+.res-device-show {
+    display:block;
+}
+.res-desktop-show {
+    display:none;
+}
+
+@media (min-width: 768px) {
+.res-device-show {
+	display:none;
+}
+.res-desktop-show {
+	display:block;
+}
+}
+
+/* -----------------------------------------------
+   Bread Crumb Styles*/
+
+.other-subnav-hldr {
+	padding:15px 0 0px 0;
+	display:block;
+}
+.breadcrumb-other {
+	padding: 8px 0px;
+	margin-bottom: 20px;
+	list-style: none;
+	background-color: #fff;
+	border-radius: 4px;
+	display:block;
+}
+.breadcrumb-other > li {
+	display: inline-block;
+	padding:0 5px 0 0px;
+}
+.breadcrumb-other > li a {
+	padding:0 5px 0 0px;
+}
+.breadcrumb-other > li + li:before {
+	padding: 0 10px;
+	color: #cccccc;
+}
+.breadcrumb-other > .active {
+	color: #777777;
+}
+
+@media (min-width: 768px) {
+
+}
+
+/* -----------------------------------------------
+   Editorial Block Styles
+------------------------------------------------- */
+
+.editor-block {
+	background-color: #fff;
+}
+.editor-block .container {
+	min-height: 300px;
+	padding: 20px 20px 30px 20px;
+}
+.editor-block .container h1 {
+	margin-top: 0px;
+}
+.editor-block .container h2 {
+	margin: 0px;
+	font-size:16px;
+	padding: 10px 0px 15px 0px;
+	font-weight:bold;
+}
+.editor-block .container a {
+	color: #156abd;
+	text-decoration: underline;
+}
+.editor-block .container a:hover, a:focus {
+	text-decoration: underline;
+}
+.editor-block .container .title-header {
+	background-color:#0c4e77;
+	padding:5px 10px 5px 10px;
+	margin-bottom:20px;
+}
+.editor-block .container .title-header h1{
+	color:#fff;
+	padding:0;
+	margin:0;
+}
+.editor-block .container .title-header h1 li{
+	padding:0 0 0px 0;
+	margin:0 0 0px 0;
+} 
+.editor-block .container .title-header h1 li img{
+	margin:0 0 5px 0;
+} 
+
+@media (min-width: 768px) {
+.editor-block .container {
+	min-height: 300px;
+	padding: 20px 0px 30px 0px;
+}
+.maincontent-other{
+    margin-top: 20px;
+    padding:0px 20px 0px 0px;
+}
+.editor-maincontent{
+    margin-top: 20px;
+    padding:0px 20px 0px 0px;
+}
+.editor-storycontent{
+    margin-top: 20px;
+    padding:0px 20px 0px 0px;
+}
+.editor-maincontent-full{
+    margin-top: 20px;
+    padding:0px 0px 0px 0px;
+}
+
+}
+
+/* -----------------------------------------------
+   Top Story Styles*/
+   
+.main-story-block{
+    padding:0px 0px 0px 0px;
+	border:1px solid #ccc;
+}
+.top-story {
+    padding: 0 10px 10px 10px;
+}
+.top-story h1 {
+    font-size: 16px;
+    display: inline;
+}
+.top-story img {
+    float: left;
+    margin: 0 10px 20px 0;
+}
+.top-story p {
+    margin: 5px auto;
+}
+.more-featured {
+    background-color: #eaeaea;
+    border-top: 1px solid #ccc;
+    padding:0 0 10px 0px;
+}
+.more-featured h2 {
+    font-size: 16px;
+    padding-left: 10px !important;
+    text-align: left;
+}
+.more-featured img {
+    margin-bottom: 10px;
+}
+
+/* -----------------------------------------------
+   1st Column Info Graphic/Rate Chart Styles*/
+
+.maincontent-other{
+    margin-top: 20px;
+    padding:0px 0px 0px 0px;
+}
+.info-graphic {
+    margin: 0px 0 20px 0;
+    padding: 0px 10px 10px 10px;
+	border:1px solid #ccc;
+}
+.elp-ratechart {
+    margin-top: 10px;
+    padding: 0 0px 0px 0;
+	border-color:#ccc;
+	border-width:0 1px 1px 1px;
+	border-style:solid;
+}
+.weekly-subscribe {
+    padding: 10px 0 10px 0;
+}
+.newsletter-subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 0 15px;
+}
+.weekly-subscribe .subcribe-btn{
+    padding: 20px 0 10px 0;
+}
+.weekly-subscribe .subcribe-btn a{
+	text-decoration:none;
+	color:#fff;
+}
+.weekly-subscribe .subcribe-btn a:hover, a:focus{
+	text-decoration:none;
+	color:#fff;
+}
+.weekly-subscribe i {
+    float: left;
+    margin: 0 10px 0px 0;
+	color:#0C4E77;
+}
+.newsletter-signup-right-img {
+	margin: 10px 10px 20px 0;
+	border:none;
+}
+
+/* -----------------------------------------------
+   2nd Column Credit Card Expert/Help/Glossaory/Quiz Styles*/
+
+.expert-corner {
+    margin:0px;
+    padding:0px 0;
+}
+.expert-corner img {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+.cchelpdiv {
+    margin:0px;
+    padding-bottom:0px
+}
+.cchelpdiv i {
+    float: left;
+    margin: 0 10px 0px 0;
+	color:#0C4E77;
+}
+.glossary {
+    margin:0px;
+    padding-bottom:0px
+}
+.glossary i {
+    float: left;
+    margin: 0 10px 0px 0;
+	color:#0C4E77;
+}
+.ccquiz {
+    margin:0px;
+    padding-bottom:0px
+}
+.ccquiz i {
+    float: left;
+    margin: 0 10px 0px 0;
+	color:#0C4E77;
+}
+.calculators {
+    margin:0px;
+    padding-bottom:0px
+}
+.calculators i {
+    float: left;
+    margin: 0 10px 5px 0;
+	color:#0C4E77;
+}
+
+/* -----------------------------------------------
+   Last Column Styles*/
+   
+.last-column{
+    padding:0px 0px 0px 0px;
+}
+.topright {
+    padding:0px 0 0px 0;
+}
+.topright img {
+    float: left;
+    margin: 0 10px 20px 0;
+}
+.polldiv {
+    padding: 0px 0 0px 0;
+}
+.fundamentals {
+    padding: 0px 0 0px 0;
+}
+.estimator {
+    padding: 0px 0 0px 0;
+}
+.estimator i {
+    float: left;
+    margin: 0 10px 0px 0;
+	color:#0C4E77;
+}
+.actionIcon {
+    margin-bottom: 10px;
+}
+.actionIcon i {
+    padding-right: 5px;
+    border-style: none;
+    vertical-align: middle; /*ie hack to supplement the align attr on img tag*/
+	color:#0C4E77;
+}
+.actionIcon img {
+    padding-right: 5px;
+    border-style: none;
+    vertical-align: middle; /*ie hack to supplement the align attr on img tag*/
+}
+.last-column > .editorial-policy {
+	display:none;
+}
+.last-column  .social-side-icons{
+	padding: 0px 0px 0px 0px;
+	text-align:left;
+	display:block;
+}
+.last-column .side-adunit-hldr {
+	text-align:center; 
+	padding-top:10px;
+	display:block;
+/*	width:180px;
+	margin:0 auto;*/
+}
+.last-column .side-adunit-text {
+	color:#000; 
+	font-size:12px; 
+	padding:5px 0 0 0;
+	text-align:center;
+}
+.last-column .quick-links li{
+	padding:0px
+	 0 5px 0;
+}
+.res-edpolicy-show {
+    display:inline;
+}
+
+
+@media (min-width: 768px) {
+.last-column > .editorial-policy {
+	display: none;
+}
+.res-edpolicy-show {
+    display:inline;
+}
+}
+
+@media (min-width: 992px) {
+.last-column > .editorial-policy {
+	display:block;
+}
+.res-edpolicy-show {
+	display:none;
+}
+}
+
+/* -----------------------------------------------
+  Glossary Styles
+------------------------------------------------- */
+
+.glossaryindex {
+    background-color: #dae4ee;
+    border: 1px solid #003366;
+    color: #999;
+    font: bold 14px;
+    margin: 0 0 15px;
+    padding: 5px;
+    text-align: center;
+}
+
+/* -----------------------------------------------
+  Story Styles
+------------------------------------------------- */
+
+.credit-archive-list {
+	padding:0px 0 5px 0;
+}
+.editor-storycontent h1{
+	margin-bottom:0 !important;
+	color:#0C4E77 !important;
+	font-weight:bold !important;
+}
+.editor-storycontent h2{
+	font-weight:normal !important;
+	font-size:14px !important;
+	padding:5px 0 0 0 !important;
+}
+.editor-storycontent h3{
+	color:#666 !important;
+	font-size:12px !important;
+	margin:20px 0 20px 0 !important;
+}
+.editor-storycontent h4{
+	color:#666 !important;
+	font-size:12px !important;
+	margin:20px 0 20px 0 !important;
+}
+#fb-socialplugin {
+    display:none;
+}
+.more-stories-hldr {
+    margin: 10px 0;
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+	padding: 15px;
+	background-color:#eee;
+}
+.share-hldr {
+	margin: 0px 0 20px 0;
+}
+
+@media (min-width: 768px) {
+    #fb-socialplugin {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    #fb-socialplugin{
+        display: block;
+    }
+}
+
+
+/* -----------------------------------------------
+  Author Story Styles
+------------------------------------------------- */
+
+.author-header-hldr {
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+	padding: 15px 10px 10px;
+	margin: 10px 0 10px 0;
+}
+.author-header-hldr h1{
+	font-size: 2em; 
+	font-weight: bold;
+}
+.author-pic-hldr {
+	margin-right: 5px; 
+	margin-bottom: 5px;
+	text-align: left; 
+}
+.author-social-icons{
+	padding: 0px 0px 0px 0px;
+	text-align:left;
+	display:block;
+}
+.author-social-icons li{
+	padding: 0px 0px 0px 0px;
+}
+.author-sub-title {
+	font-size: 16px; 
+	font-weight: bold; 
+	color: #990000;
+	padding:20px 0 15px 0;
+}
+.author-content {
+}
+
+/* -----------------------------------------------
+  Quote Styles
+------------------------------------------------- */
+
+.quoteleft {
+    background-image: url("http://www.creditcards.com/credit-card-news/images/quote.gif");
+    background-position: left top;
+    background-repeat: no-repeat;
+    float: left;
+    font-weight: bold;
+    margin: 10px;
+    padding-left: 30px;
+    padding-top: 15px;
+    width: 250px;
+}
+.quoteleft p {
+    background-image: url("http://www.creditcards.com/credit-card-news/images/unquote.gif");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    color: #000066;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0 20px 0 0;
+}
+.quoteleft p:first-line {
+    color: #000066;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 24px;
+}
+.quoteright {
+    background-image: url("http://www.creditcards.com/credit-card-news/images/quote.gif");
+    background-position: left top;
+    background-repeat: no-repeat;
+    float: right;
+    font-weight: bold;
+    margin: 10px;
+    padding-left: 30px;
+    padding-top: 15px;
+    width: 250px;
+}
+.quoteright p {
+    background-image: url("http://www.creditcards.com/credit-card-news/images/unquote.gif");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    color: #000066;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0 20px 0 0;
+}
+.quoteright p:first-line {
+    color: #000066;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 24px;
+}
+
+/* -----------------------------------------------
+  Expert QA Styles
+------------------------------------------------- */
+
+.reader-expertqa-hldr {
+}
+
+.reader-expertqa-hldr h2 {
+	font-size:18px;
+    color: #0c4e77 !important;
+    font-weight: bold !important;
+    margin-bottom: 5px !important;
+}
+.reader-expertqa-hldr li{
+	width:90px;
+	vertical-align:top;
+	padding-top:10px
+}
+
+
+/* -----------------------------------------------
+  Table Styles
+------------------------------------------------- */
+
+.table th {
+    background-color: #0c4e77;
+    color: #fff;
+    text-align: left;
+}
+
+/* -----------------------------------------------
+   Banner ad Styles
+------------------------------------------------- */
+
+#top-adSpacehldr{
+    display:none;
+}
+#side-adSpacehldr{
+    display:none;
+}
+#bottom-adSpacehldr{
+    display:none;
+}
+.adunit-text{
+	font-size: 10px; 
+	text-align: right; 
+	padding-right: 0px;
+}
+@media (min-width: 768px) {
+	
+#top-adSpacehldr{
+	display: none;
+}
+#side-adSpacehldr{
+	display: none;
+}
+#bottom-adSpacehldr{
+	display: none;
+}
+}
+
+@media (min-width: 992px) {
+	
+#top-adSpacehldr{
+	display: none;
+}
+#side-adSpacehldr{
+	text-align:center; 
+	padding-top:10px;
+	display: block;
+}
+#bottom-adSpacehldr{
+	display: none;
+}
+}
+
+@media (min-width: 1200px) {
+	
+#top-adSpacehldr{
+	display: block;
+	width:728px;
+	margin:0 auto;
+}
+#side-adSpacehldr{
+	text-align:center; 
+	padding-top:10px;
+	display: block;
+}
+#bottom-adSpacehldr{
+	display: block;
+	width:728px;
+	margin:0 auto;
+}
+.advertisement-top-text{
+	display: block;
+	font-size: 10px;
+	text-align: right;
+}
+.advertisement-side-text{
+	display: block;
+	font-size: 10px;
+	text-align: center;
+}
+
+}

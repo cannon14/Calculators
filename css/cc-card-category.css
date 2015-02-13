@@ -1,0 +1,1509 @@
+/*//////////////////////////////  Card Category Styles  /////////////////////////////////*/
+
+.mobile-hide{
+	display:none;
+}
+.card-category-block {
+    background-color: #fff;
+}
+.card-category-block .container h1{
+	font-size:20px;
+	margin-top:0;
+	margin-bottom:0;
+}
+.card-category-block .container {
+    min-height: 300px;
+    padding: 20px 10px 30px 10px;
+}
+.card-category-block .container a {
+    color: #156abd;
+    text-decoration: none;
+}
+.card-category-block .container a:hover, a:focus {
+    text-decoration: underline;
+}
+.card-category-block .container .category-description {
+	display:none;
+}
+.card-category-block .category-rightgutter-hldr{
+	display:none;
+}
+.category-showhide-btn {
+	padding: 10px 0px 20px 27px;
+	font-size:14px;
+	cursor:pointer;
+}
+.res-schumer-box.other-cards{
+	margin-bottom: 20px;
+}
+
+.res-schumer-box-container h2{
+	text-align: left;
+}
+
+.card-category-disclosure-hldr{
+    padding: 20px 0px 5px 0px;
+}
+.res-schumer-box{
+	background: #fff;
+	border:1px solid #cacaca;
+	margin-bottom:10px;
+}
+.res-schumer-box li {
+	font: 12px;
+	margin:5px 0 0px 0;
+	color:#444;
+}
+.res-schumer-box-pd{
+	background: #fff;
+	border:1px solid #cacaca;
+	margin-bottom:10px;
+}
+.res-schumer-box-pd li {
+	font: 12px;
+	margin:5px 0 0px 0;
+	color:#444;
+}
+.res-offer-left{
+	padding:20px 10px 20px 15px;
+	background-color: transparent;
+	font-size:18px;
+	font-weight:700;
+	color:#313131;
+}
+.res-offer-left a, .res-offer-left a:link, .res-offer-left a:hover , .res-offer-left a:visited{
+	text-decoration:none !important;
+	color:#313131;
+	padding-top:10px;
+}
+.res-offer-left-featured{
+	padding:20px 10px 20px 10px;
+	background-color: transparent;
+	font-size:18px;
+	font-weight:700;
+	color:#313131;
+}
+.res-offer-left-featured a, .res-offer-left-featured a:link, .res-offer-left-featured a:hover , .res-offer-left-featured a:visited{
+	text-decoration:none !important;
+	color:#313131;
+	padding-top:10px;
+	padding:10px 0px 0px 0px;
+}
+.res-offer-left-featured .res-top-pick2{
+	display:none;
+}
+.res-cc-card-art-align {
+	text-align: left;
+	vertical-align: top;
+	margin: 0;
+    padding-left:15px;
+}
+.res-details {
+	background-color: transparent !important;
+	list-style-position: outside;
+	vertical-align: text-top;
+	padding:20px 10px 10px 0px;
+	display:block;
+}
+.res-field-apply-now{
+	display:none;
+}
+.res-field-apply-now-768 a{
+	text-decoration:none !important;
+}
+.res-field-apply-now-768{
+	color:#262626;
+	padding:0px 10px 0 0;
+}
+.res-field-apply-now-768 p{
+	text-align:left;
+	font-size:12px;
+	float:left;
+	padding:0 5px 0 0px;
+}
+.res-field-apply-now-768 p.apply-call{
+	margin-left:0px;
+}
+.res-field-apply-now-768 p.apply-call img{
+	margin-right:-3px;
+}
+.res-field-apply-now-768 p>span{
+	display:inline-block;
+	font-size:12px;
+}
+a.show-more-results {
+    background-color:#eaedf0;
+	color:#666 !important;
+	font-size: 16px;
+	padding: 1em;
+	margin-top:30px;
+	text-decoration: none !important;
+	text-align:center;
+	border: 1px solid #b3b3b3;
+	display:block;
+}
+a.show-more-results:hover, a.show-more-results:focus{
+    background-color:#dcdee1;
+	color:#666 !important;
+	border: 1px solid #999;
+}
+.category-subnav{
+	display:none;
+}
+.disqus-block{
+	display:none;
+}
+
+/* -----------------------------------------------
+   Apply Btn Styles
+------------------------------------------------- */
+
+.btn-primary {
+	color: #fff !important;
+	background-color: #428bca;
+	border-color: #357ebd;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+	color: #fff !important;
+	background-color: #3071a9;
+	border-color: #285e8e;
+}
+.btn-apply {
+	color: #fff !important;
+	background-color: #439d5d;
+	border-color: #439d5d;
+}
+
+.btn-apply:hover,
+.btn-apply:focus,
+.btn-apply:active,
+.btn-apply.active,
+.open > .dropdown-toggle.btn-apply {
+	color: #fff !important;
+	background-color: #3a8e52;
+	border-color: #3a8e52;
+}
+.btn-apply:active,
+.btn-apply.active,
+.open > .dropdown-toggle.btn-apply {
+	background-image: none;
+}
+.btn-apply.disabled,
+.btn-apply[disabled],
+fieldset[disabled] .btn-apply,
+.btn-apply.disabled:hover,
+.btn-apply[disabled]:hover,
+fieldset[disabled] .btn-apply:hover,
+.btn-apply.disabled:focus,
+.btn-apply[disabled]:focus,
+fieldset[disabled] .btn-apply:focus,
+.btn-apply.disabled:active,
+.btn-apply[disabled]:active,
+fieldset[disabled] .btn-apply:active,
+.btn-apply.disabled.active,
+.btn-apply[disabled].active,
+fieldset[disabled] .btn-apply.active {
+	background-color: #ffffff;
+	border-color: #cccccc;
+}
+.btn-apply .badge {
+	color: #ffffff;
+	background-color: #333333;
+}
+
+.btn-lg,
+.btn-group-lg > .btn {
+	padding: 8px 16px 8px 10px;
+	font-size: 12px;
+	line-height: 1.33;
+	border-radius: 0px;
+}
+
+@media (min-width: 768px) {
+.mobile-hide{
+	display: block;
+}
+.card-category-block .container {
+    min-height: 300px;
+    padding: 20px 0px 30px 0px;
+}
+.card-category-block .container h1{
+	font-size:30px;
+	margin-top:20px;
+}
+.card-category-block .container .category-description {
+	max-width:770px;
+	display:block;
+	padding-top:10px;
+}
+.category-subnav{
+	padding:15px 0 0px 0;
+	display:block;
+}
+.res-schumer-box{
+	background: #fff url("../images/schumer-bg.png") repeat-y right -60px top 0px;
+	border:1px solid #B3B3B3;
+	margin-bottom:30px;
+}
+.res-schumer-box-pd{
+	background: #fff url("../images/schumer-bg.png") repeat-y right -60px top 0px;
+    border:1px solid #B3B3B3;
+	margin-bottom:30px;
+}
+.res-offer-left-featured a, .res-offer-left-featured a:link, .res-offer-left-featured a:hover , .res-offer-left-featured a:visited{
+	text-decoration:none;
+	color:#313131;
+	padding:10px 0px 0px 45px;
+}
+.res-offer-left-featured .res-top-pick2{
+    background: url("../images/featured.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 70px;
+    margin-left: -10px;
+    margin-top: -20px;
+    position: absolute;
+    width: 80px;
+	display:block;
+}
+.res-details {
+	background-color: transparent !important;
+	list-style-position: outside;
+	vertical-align: text-top;
+	padding:0px 10px 10px 0px;
+	display:block;
+}
+.res-field-apply-now{
+	display:none;
+}
+.res-field-apply-now-768{
+	display: none;
+}
+.res-field-apply-now{
+	width:140px;
+	color:#262626;
+	text-align:center;
+	vertical-align:middle; 
+	display: table-cell;
+	padding:40px 0 0 0;
+}
+.res-field-apply-now a{
+	text-decoration:none !important;
+}
+.apply-now-btn-padding{
+	padding-left:10px;
+}
+.res-field-apply-now p{
+	text-align:center;
+	font-size:12px;
+}
+.res-field-apply-now p.apply-call{
+	margin-left:-13px;
+}
+.res-field-apply-now p.apply-call img{
+	margin-right:-5px;
+}
+.res-field-apply-now p > span{
+	display:inline-block;
+}
+.btn-lg,
+.btn-group-lg > .btn {
+	padding: 8px 16px 8px 10px;
+	font-size: 18px;
+	line-height: 1.33;
+	border-radius: 0px;
+}
+.card-category-block .category-rightgutter-hldr{
+	padding: 30px 0px 0px 0px;
+	display:block;
+}
+.category-showhide-btn {
+  padding: 15px 0px 20px 40px;
+	font-size:14px;
+	cursor:pointer;
+}
+.card-category-block .category-rightgutter-hldr{
+	display:none;
+}
+.disqus-block{
+	display:none;
+}
+}
+
+@media (min-width:992px){
+.card-category-block .container {
+	min-height: 300px;
+	padding: 20px 0px 100px 0px;
+}
+.res-schumer-box{
+	 background: #fff url("../images/schumer-bg.png") repeat-y right -70px top 0px;
+     border:1px solid #B3B3B3;
+	 margin-bottom:30px;
+}
+.res-schumer-box-pd{
+	 background: #fff url("../images/schumer-bg.png") repeat-y right -37px top 0px;
+     border:1px solid #B3B3B3;
+	 margin-bottom:30px;
+}
+.res-details {
+	background-color: transparent !important;
+	list-style-position: outside;
+	vertical-align: text-top;
+	padding:0px 10px 10px 0px;
+	display:block;
+}
+.res-field-apply-now{
+	display:none;
+}
+.res-field-apply-now-768{
+	display: none;
+}
+.res-field-apply-now{
+	width:160px;
+	color:#262626;
+	text-align:center;
+	vertical-align:middle; 
+	display: table-cell;
+	padding:40px 0 0 0;
+}
+.res-field-apply-now a{
+	text-decoration:none !important;
+}
+.apply-now-btn-padding{
+	padding-left:10px;
+}
+.res-field-apply-now p{
+	text-align:center;
+	font-size:12px;
+}
+.res-field-apply-now p.apply-call{
+	margin-left:-13px;
+}
+.res-field-apply-now p.apply-call img{
+	margin-right:-5px;
+}
+.res-field-apply-now p > span{
+	display:inline-block;
+}
+.btn-lg,
+.btn-group-lg > .btn {
+    padding: 8px 16px 8px 10px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 0px;
+}
+.card-category-block .category-rightgutter-hldr{
+    padding: 30px 0px 0px 10px;
+	display:block;
+	max-width:217px;
+    z-index:1000;
+}
+.disqus-block{
+	display:block;
+}
+}
+
+@media (min-width:1200px){
+.res-schumer-box{
+	 background: #fff url("../images/schumer-bg.png") repeat-y right -50px top 0px;
+     border:1px solid #B3B3B3;
+	 margin-bottom:30px;
+}
+.res-schumer-box-pd{
+	 background: #fff url("../images/schumer-bg.png") repeat-y right -10px top 0px;
+     border:1px solid #B3B3B3;
+	 margin-bottom:30px;
+}
+
+.res-field-apply-now{
+	width:200px;
+	color:#262626;
+	text-align:center;
+	vertical-align:middle; 
+	display: table-cell;
+	padding:40px 0 0 0;
+}
+.res-field-apply-now a{
+	text-decoration:none !important;
+}
+.apply-now-btn-padding{
+	padding-left:15px;
+}
+.btn-lg,
+.btn-group-lg > .btn {
+    padding: 8px 16px 8px 10px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 0px;
+}
+.card-category-block .category-rightgutter-hldr{
+    padding: 30px 0px 0px 10px;
+	display:block;
+	max-width:268px;
+    z-index:1000;
+}
+}
+
+/* -----------------------------------------------
+   Site Card Terms Content Styles
+------------------------------------------------- */
+
+.back-to-top-block {
+    background-color:#eaedf0;
+	border-top: 1px solid #ccc;
+}
+.back-to-top-block > .container{
+	padding: 35px 20px 35px 20px;
+	line-height:23px;
+	font-size:16px;
+	position: relative;
+}
+a.back-to-top {
+    background-color:#aa0001;
+    bottom: 5em;
+    color: #fff;
+    font-size: 12px;
+    padding: 1em;
+    position: fixed;
+    right: 0;
+    text-decoration: none !important;
+	opacity: 0.75;
+	z-index:1000;
+	text-align:center;
+}
+.back-to-top:hover {
+    background-color:#aa0001;
+}
+.back-to-top-block > .container > .row > .col-md-24 > a.back-to-top-bottom {
+	display: none;
+}
+
+@media (min-width: 768px) {
+.back-to-top-block > .container{
+	padding: 75px 0px 75px 0px;
+	line-height:23px;
+	font-size:16px;
+	position: relative;
+}
+.back-to-top-block > .container > .row > .col-md-24 > a.back-to-top-bottom {
+    background-color:#072D44;
+    top: -95px;
+	left:40%;
+    color: #fff;
+    font-size: 12px;
+    padding: 1em;
+	position: absolute;
+    text-decoration: none;
+	z-index:1000;
+	width:200px;
+	text-align:center;
+	display:block;
+}
+.back-to-top-block > .container > .row > .col-md-24 > .back-to-top-bottom:hover {
+    background-color:#1C609D;
+}
+}
+
+/* -----------------------------------------------
+   Product Details Staff Review Styles
+------------------------------------------------- */
+
+.story-info-hldr {
+	color: gray;
+	padding:20px 0 0 0;
+}
+.story-info-hldr img {
+	float: left;
+	clear: right;
+	padding: 0 10px 4px 0;
+}
+.quick-links-hldr {
+	padding: 10px 0px 0px 0px;
+	font-size:16px !important;
+}
+.quick-links-hldr h2{
+	font-size:24px !important;
+}
+.review-disclaimer{
+	font-size:11px !important;
+}
+
+/* -----------------------------------------------
+   Best Cards Styles
+------------------------------------------------- */
+
+.res-bestcards-hldr {
+	border: 1px solid #ccc;
+	margin:0 0 10px 0;
+	padding:5px 10px 5px 10px;
+}
+.res-bestcards-hldr h3{
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0px 0 0px 0px;
+	text-align:left;
+	margin:0;
+	color:#333;
+}
+.res-bestcards-hldr p{
+    font-size: 13px;
+    padding: 15px 0 30px 0px;
+	text-align:left;
+	margin:0;
+
+	color:#333;
+	min-height:200px;
+}
+
+.res-bestcards-hldr hr{
+	border-color:#ccc;
+	border-style:dashed;
+	border-width:1px;
+}
+.res-bestcards-title {
+    padding: 0px 0px 0px 0px;
+	text-align:center;
+	min-height:35px;
+}
+.res-bestcards-title a, .res-bestcards-title a:link, .res-bestcards-title a:hover, .res-bestcards-title a:visited {
+    text-decoration: none;
+	font-size:14px;
+	font-weight:bold;
+}
+.res-bestcards-card {
+    padding: 10px 0px 10px 0px;
+	text-align:center;
+}
+.res-data-hldr{
+    padding: 0px 10px 10px 10px;
+	text-align:left;
+	color:#333;
+	font-size:11px;
+	min-width:110px;
+}
+.res-data-title {
+    padding: 3px 0px 0px 0px;
+	text-align:left;
+	vertical-align:top;
+	width:80px;
+	min-width:90px;
+}
+.res-data-content {
+    padding: 3px 0px 0px 0px;
+	text-align:left;
+	vertical-align:top;
+	min-width:80px;
+	width:100px;
+}
+.res-btn-hldr {
+    padding: 0px 0px 10px 0px;
+	text-align:center;
+}
+.res-btn-hldr a{
+	text-decoration:none !important;
+}
+.res-best-card-news-link {
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+.res-bestcards-hldr {
+	border: 1px solid #ccc;
+	min-height:1100px;
+	margin:0 0 10px 0;
+	padding:5px 10px 5px 10px;
+}
+.res-bestcards-content {
+    padding: 0px 15px 20px 10px;
+}
+}
+
+@media (min-width: 992px) {
+.res-bestcards-hldr {
+	border: 1px solid #ccc;
+	min-height:1050px;
+	margin:0 0 10px 0;
+	padding:5px 10px 5px 10px;
+}
+}
+
+
+/* -----------------------------------------------
+   Apply Page Styles
+------------------------------------------------- */
+
+.featured-box {
+	text-align:center; 
+	padding:20px;
+	min-height:240px !important;
+}
+.featured-box span{
+	font-weight:normal;
+	font-size:13px;
+}
+.featured-box a {
+	font-weight: bold;
+	font-size:14px;
+}
+.featured-box .card-art {
+	padding: 10px;
+}
+.featured-box:nth-child(1), 
+.featured-box:nth-child(2),
+.featured-box:nth-child(3),
+.featured-box:nth-child(4),
+.featured-box:nth-child(5),
+.featured-box:nth-child(6),
+.featured-box:nth-child(7),
+.featured-box:nth-child(8),
+.featured-box:nth-child(9) {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.featured-box:nth-child(9) {
+    border-bottom: 1px solid #ccc;
+}
+.bottom-banner-hldr {
+	display:none;
+}
+
+@media (min-width: 768px) {
+.featured-box:nth-child(1),
+.featured-box:nth-child(3), 
+.featured-box:nth-child(5),
+.featured-box:nth-child(7){
+	border-right: none;			
+}
+.featured-box:nth-child(8){
+  	border-bottom: 1px solid #ccc;
+}
+.bottom-banner-hldr {
+	text-align:center;
+	display:block;
+	padding-top:40px;
+}
+}
+
+@media (min-width: 992px) {
+.featured-box:nth-child(1),
+.featured-box:nth-child(2),
+.featured-box:nth-child(4),
+.featured-box:nth-child(8){
+    border-right: none;
+}	
+.featured-box:nth-child(7) {
+    border-bottom: 1px solid #ccc;
+}
+.featured-box:nth-child(3) {
+    border-right: 1px solid #ccc;
+}	
+}
+
+/* -----------------------------------------------
+   Credit Estimator Calculator Styles
+------------------------------------------------- */
+
+.bt-calculator-label {
+	display: inline-block;
+	float: left;
+}
+.bt-calc-help {
+	display: inline-block;
+	float: left;
+	padding-left: 10px;
+}
+.bt-calc-field {
+	clear: both;
+}
+#bt-calc-transfer-error, #bt-calc-apr-error, #bt-calc-period-error, #bt-calc-repay-error {
+	display: none;
+}
+.bt-calculator-disclaimer-text {
+	color: #B4B5B8;
+	font-style: italic;
+	font-size: 11px;
+}
+.calc-error {
+	font-size: 10px;
+}
+
+/* -----------------------------------------------
+   Credit Score Estimator Styles
+------------------------------------------------- */
+
+.cse-meter{
+    display:none;
+}
+.cse-hldr h2{
+	padding:5px 0 20px 0;
+	margin:0;
+	font-size:17px !important;
+	text-align:center;
+}
+.cse-score-hldr{
+	width:100%;
+	background-color:#333;
+	color:#fff;
+	padding:10px 0 10px 0;
+	text-align: center;
+}
+.cse-score-hldr span{
+	padding:10px 0 10px 0;
+	margin:0;
+	font-size:20px;
+}
+.cse-score-hldr h1{
+	padding:5px 0 0px 0;
+	margin:0;
+	font-size:30px;
+}
+.cse-start-over{
+	clear:both;
+	padding:5px 0 0px 0;
+}
+.cse-top-10{
+	font-size:13px;
+	font-weight:bold;
+	padding:10px 0 0 0;
+}
+.cse-disclaimer-text{
+	font-size:12px;
+	padding-bottom:25px;
+}
+.cse-glossary {
+    display:none;
+}
+.cse-all-cards-link {
+	display: inline-block;
+	float: right;
+	margin-top: 2em;
+}
+.cse-fb-like {
+    display:none;
+}
+.cse-bottom-content{
+    margin: 0;
+}
+.cse-bottom-content p {
+    margin-bottom: 3em;
+}
+.res-schumer-box .res-details ul:first-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.res-schumer-box .res-details ul:nth-child(2) {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+@media (min-width: 768px) {
+	
+.cse-hldr h2{
+	padding:5px 0 20px 0;
+	margin:0;
+	font-size:22px !important;
+	text-align: right;
+}
+.cse-score-hldr{
+	width:200px;
+	background-color:#333;
+	color:#fff;
+	padding:10px 0 10px 0;
+	text-align: center;
+	float:right;
+}
+.cse-meter{
+	float:left;
+	padding:30px 0 0px 0;
+    display:block;
+}
+.cse-glossary {
+	border: 2px solid #ccc;
+    clear: both;
+    display: inline-block;
+    padding: 10px;
+    width: 34.4em;
+}
+.cse-glossary img {
+    display: inline-block;
+    float: left;
+}
+.cse-glossary p {
+	display: inline-block;
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.cse-fb-like {
+    height: 2em;
+    padding-top: 1.6em;
+    display:block;
+}
+.cse-bottom-content{
+    margin: 4em 0 2em 0;
+}
+}
+
+/* -----------------------------------------------
+   Bread Crumbs Styles
+------------------------------------------------- */
+
+.other-subnav-hldr {
+    display:none;
+}
+
+@media (min-width: 768px) {
+	
+.other-subnav-hldr{
+    padding:15px 0 0px 0;
+    display:block;
+}
+.breadcrumb-other {
+    padding: 8px 0px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 4px;
+    display:block;
+}
+.breadcrumb-other > li {
+    display: inline-block;
+    padding:0 5px 0 0px;
+}
+.breadcrumb-other > li a{
+    padding:0 5px 0 0px;
+}
+.breadcrumb-other > li + li:before {
+    padding: 0 10px;
+    color: #cccccc;
+}
+.breadcrumb-other > .active {
+    color: #777777;
+}
+}
+
+.staff-review-text {
+	color: #000;
+}
+
+/* -----------------------------------------------
+   NFL Styles
+------------------------------------------------- */
+
+.nfl-btn {
+    padding: 0px 0 0px 0;
+}
+.nfl-btn a {
+	text-decoration:none;
+	color:#fff !important;
+}
+.nfl-btn a:hover, .nfl-btn a:focus {
+	text-decoration:none !important;
+	color:#fff !important;
+}
+.nfl-card-img {
+    padding: 60px 0 20px 0;
+}
+
+/* -----------------------------------------------
+   T Page Styles
+------------------------------------------------- */
+
+.t-bg {
+	background-color:#0C4E77;
+}
+.t-page-block {
+    background-color:#0C4E77;
+}
+.t-page-block .container {
+    min-height: 300px;
+    padding: 20px 20px 30px 20px;
+}
+.load-hldr {
+	height: auto;
+	margin: 2em auto;
+	padding: 1em 1em;
+	border: 0;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 2px 2px 3px #333;
+	-moz-box-shadow: 2px 2px 3px #333;
+	-webkit-box-shadow: 2px 2px 3px #333;
+}
+.tran-hldr {
+    padding: 20px 0px 10px 0px;
+}
+.tran-hldr ul li{
+    padding: 0px 2em;
+}
+.li-none {
+	display:none !important;
+}
+
+@media (min-width: 768px) {
+.li-none {
+	display:inline-block !important;
+}
+.t-page-block .container {
+    min-height: 300px;
+    padding: 20px 0px 30px 0px;
+}
+.load-hldr {
+	width: 735px;
+	height: auto;
+	margin: 2em auto;
+	padding: 1em 1em;
+	border: 0;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 2px 2px 3px #333;
+	-moz-box-shadow: 2px 2px 3px #333;
+	-webkit-box-shadow: 2px 2px 3px #333;
+}
+.tran-hldr {
+    padding: 60px 0px 10px 0px;
+}
+
+}
+
+@media (min-width:992px) {
+	.t-page-block .container {
+		min-height: 300px;
+		padding: 20px 0px 100px 0px;
+	}
+	.load-hldr {
+		width: 735px;
+		height: auto;
+		margin: 2em auto;
+		padding: 1em 1em;
+		border: 0;
+		background-color: #fff;
+		text-align: center;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		box-shadow: 2px 2px 3px #333;
+		-moz-box-shadow: 2px 2px 3px #333;
+		-webkit-box-shadow: 2px 2px 3px #333;
+	}
+}
+
+
+/*//////////////////////////////  DataList Card Category Styles  /////////////////////////////////*/
+
+/* -----------------------------------------------
+   Misc Card Category Data Styles
+------------------------------------------------- */
+
+.res-card-data-hldr {
+	background-color:#FFF;
+}
+.responsive-table{
+	width:100.2%;
+}
+.responsive-table,
+.responsive-table dl,
+.responsive-table dd{
+	margin:0;
+	padding:0;
+	line-height:1em;
+	text-align:center;
+	display:block;
+}
+.responsive-table dl:nth-child(3),
+.responsive-table dl:nth-child(4),
+.responsive-table dl:nth-child(7){
+	display:none;
+}
+.responsive-table li{
+	list-style:none;
+	display:block;
+	clear:both;
+	padding:0px; 
+}
+.card-estimate-button {
+	display:none;
+}
+
+@media (max-width:991px){
+.responsive-table .first-row dt{
+	float:left;
+	clear:left;
+	text-align:right;
+	display: block;
+	padding:5px 8px 5px 8px;
+	width:30%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	background-color:#e3eef7;
+}
+.responsive-table dt{
+	padding:5px 0 0px 0;
+	font-weight:bold;
+	color:#16487b;
+	font-size:13px;
+	line-height:16px;
+}
+
+.responsive-table dd{
+	float:left;
+	display: block;
+	padding-left:10px;
+	padding:5px 0 5px 10px;
+	width:70%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	text-align:left;
+}
+.credit-needed-hldr{
+	padding-top:5px; 
+	font-size:11px; 
+	text-align:center; 
+	line-height:12px;
+	display:block;
+}
+}
+
+@media (min-width:992px){
+.responsive-table dl{
+	padding:0px 0 5px 0;
+}
+.responsive-table dl:nth-child(1),
+.responsive-table dl:nth-child(2),
+.responsive-table dl:nth-child(3),
+.responsive-table dl:nth-child(4),
+.responsive-table dl:nth-child(5),
+.responsive-table dl:nth-child(6),
+.responsive-table dl:nth-child(7){
+	float:left;
+	display:inline;
+	width:14.2857%;
+	padding:0px 0 0px 0;
+	text-align:center;
+}
+.responsive-table .first-row {
+}
+.responsive-table dt{
+    display:none;
+}
+.responsive-table .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:75px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+}
+.responsive-table dd{
+  display: block;
+	text-align:center;
+	padding:5px 5px 10px 5px;
+}
+.card-estimate-button {
+    cursor: pointer;
+	color:#66c0ff !important;
+    display: inline;
+}
+.credit-needed-hldr{
+	display: none;
+}
+
+}
+
+@media (min-width:1200px){
+.responsive-table .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:60px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+}
+}
+
+/* -----------------------------------------------
+   Balance Transfer Card Category Data Styles
+------------------------------------------------- */
+
+.responsive-table-bt{
+	width:100.2%;
+}
+.responsive-table-bt,
+.responsive-table-bt dl,
+.responsive-table-bt dd{
+	margin:0;
+	padding:0;
+	line-height:1em;
+	text-align:center;
+	display:block;
+}
+.responsive-table-bt dl:nth-child(5),
+.responsive-table-bt dl:nth-child(6),
+.responsive-table-bt dl:nth-child(7){
+	display:none;
+}
+.responsive-table-bt li{
+	list-style:none;
+	display:block;
+	clear:both;
+	padding:0px; 
+}
+@media (max-width:991px){
+.responsive-table-bt .first-row dt{
+	float:left;
+	clear:left;
+	text-align:right;
+	display: block;
+	padding:5px 8px 5px 8px;
+	width:30%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	background-color:#e3eef7;
+}
+.responsive-table-bt dt{
+	padding:5px 0 0px 0;
+	font-weight:bold;
+	color:#16487b;
+	font-size:13px;
+	line-height:16px;
+}
+.responsive-table-bt dd{
+	float:left;
+	display: block;
+	padding-left:10px;
+	padding:5px 0 5px 10px;
+	width:70%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	text-align:left;
+}
+}
+
+@media (min-width:992px){
+.responsive-table-bt dl{
+	padding:0px 0 5px 0;
+}
+.responsive-table-bt dl:nth-child(1),
+.responsive-table-bt dl:nth-child(2),
+.responsive-table-bt dl:nth-child(3),
+.responsive-table-bt dl:nth-child(4),
+.responsive-table-bt dl:nth-child(5),
+.responsive-table-bt dl:nth-child(6),
+.responsive-table-bt dl:nth-child(7){
+	float:left;
+	display:inline;
+	width:14.2857%;
+	padding:0px 0 0px 0;
+	text-align:center;
+}
+.responsive-table-bt .first-row {
+}
+.responsive-table-bt dt{
+    display:none;
+}
+.responsive-table-bt .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:75px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+}
+.responsive-table-bt dd{
+  display: block;
+	text-align:center;
+	padding:5px 5px 10px 5px;
+}
+}
+
+@media (min-width:1200px){
+.responsive-table-bt .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:60px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+  }
+}
+
+/* -----------------------------------------------
+   Prepaid Card Category Data Styles
+------------------------------------------------- */
+
+.responsive-table-prepaid{
+	width:100.2%;
+}
+.responsive-table-prepaid,
+.responsive-table-prepaid dl,
+.responsive-table-prepaid dd{
+	margin:0;
+	padding:0;
+	line-height:1em;
+	text-align:center;
+	display:block;
+}
+.responsive-table-prepaid dl:nth-child(1),
+.responsive-table-prepaid dl:nth-child(2),
+.responsive-table-prepaid dl:nth-child(3),
+.responsive-table-prepaid dl:nth-child(4),
+.responsive-table-prepaid dl:nth-child(5),
+.responsive-table-prepaid dl:nth-child(7){
+	display:none;
+}
+.responsive-table-prepaid li{
+	list-style:none;
+	display:block;
+	clear:both;
+	padding:0px; 
+}
+@media (max-width:991px){
+.responsive-table-prepaid .first-row dt{
+	float:left;
+	clear:left;
+	text-align:right;
+	display: block;
+	padding:5px 8px 5px 8px;
+	width:30%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	background-color:#e3eef7;
+}
+.responsive-table-prepaid dt{
+	padding:5px 0 0px 0;
+	font-weight:bold;
+	color:#16487b;
+	font-size:13px;
+	line-height:16px;
+}
+.responsive-table-prepaid dd{
+	float:left;
+	display: block;
+	padding-left:10px;
+	padding:5px 0 5px 10px;
+	width:70%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	text-align:left;
+}
+}
+
+@media (min-width:992px){
+.responsive-table-prepaid dl{
+	padding:0px 0 5px 0;
+}
+.responsive-table-prepaid dl:nth-child(1),
+.responsive-table-prepaid dl:nth-child(2),
+.responsive-table-prepaid dl:nth-child(3),
+.responsive-table-prepaid dl:nth-child(4),
+.responsive-table-prepaid dl:nth-child(5),
+.responsive-table-prepaid dl:nth-child(6),
+.responsive-table-prepaid dl:nth-child(7){
+	float:left;
+	display:inline;
+	width:14.2857%;
+	padding:0px 0 0px 0;
+	text-align:center;
+}
+.responsive-table-prepaid .first-row {
+}
+.responsive-table-prepaid dt{
+    display:none;
+}
+.responsive-table-prepaid .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:75px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+}
+.responsive-table-prepaid dd{
+	display: block;
+	text-align:center;
+	padding:5px 5px 10px 5px;
+}
+}
+
+@media (min-width:1200px){
+.responsive-table-prepaid .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:60px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+  }
+}
+
+/* -----------------------------------------------
+   All Fields Displayed Card Category Data Styles
+------------------------------------------------- */
+
+.responsive-table-all{
+	width:100.2%;
+}
+.responsive-table-all,
+.responsive-table-all dl,
+.responsive-table-all dd{
+	margin:0;
+	padding:0;
+	line-height:1em;
+	text-align:center;
+	display:block;
+}
+
+.responsive-table-all dl:nth-child(7){
+	display:none;
+}
+.responsive-table-all li{
+	list-style:none;
+	display:block;
+	clear:both;
+	padding:0px; 
+}
+@media (max-width:991px){
+.responsive-table-all .first-row dt{
+	float:left;
+	clear:left;
+	text-align:right;
+	display: block;
+	padding:5px 8px 5px 8px;
+	width:30%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	background-color:#e3eef7;
+}
+.responsive-table-all dt{
+	padding:5px 0 0px 0;
+	font-weight:bold;
+	color:#16487b;
+	font-size:13px;
+	line-height:16px;
+}
+.responsive-table-all dd{
+	float:left;
+	display: block;
+	padding-left:10px;
+	padding:5px 0 5px 10px;
+	width:70%;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:1px 0 0px 0;
+	text-align:left;
+}
+}
+
+@media (min-width:992px){
+.responsive-table-all dl{
+	padding:0px 0 5px 0;
+}
+.responsive-table-all dl:nth-child(1),
+.responsive-table-all dl:nth-child(2),
+.responsive-table-all dl:nth-child(3),
+.responsive-table-all dl:nth-child(4),
+.responsive-table-all dl:nth-child(5),
+.responsive-table-all dl:nth-child(6),
+.responsive-table-all dl:nth-child(7){
+	float:left;
+	display:inline;
+	width:14.2857%;
+	padding:0px 0 0px 0;
+	text-align:center;
+}
+.responsive-table-all .first-row {
+}
+.responsive-table-all dt{
+    display:none;
+}
+.responsive-table-all .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:75px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+}
+.responsive-table-all dd{
+	display: block;
+	text-align:center;
+	padding:5px 5px 10px 5px;
+}
+}
+
+@media (min-width:1200px){
+.responsive-table-all .first-row dt{
+	text-align:center;
+	display: block;
+	vertical-align:middle;
+	padding:5px 5px 5px 5px;
+	height:60px;
+	background-color:#0a4469;
+	font-weight: bold;
+	color:#fff;
+	border-style:solid;
+	border-color:#ccc;
+	border-width:0px 1px 0px 0;
+	line-height:16px;
+  }
+}
+

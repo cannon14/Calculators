@@ -1,0 +1,550 @@
+<!doctype html>
+<html ng-app="CalculatorApplication">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <link rel="stylesheet" href="css/siteStyles.css">
+
+    <script src="vendor/jquery-1.11.1.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/highstock/highstock.js"></script>
+    <script src="vendor/angular.min.js"></script>
+
+    <script src="js/global.js"></script>
+    <script src="js/Calculator.js"></script>
+    <script src="js/BalanceTransferCalculator.js"></script>
+    <script src="js/BalanceTransferController.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#graphTab').click(function () {
+                setTimeout(function () {
+                    $('#high_chart').highcharts().reflow();
+                }, 10);
+            });
+
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+</head>
+
+<body ng-controller="BalanceTransferController">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-16 col-md-16 text-center title">Balance Transfer Calculator</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-16 col-md-16">
+            <div class="cal-hldr" ng-controller="BalanceTransferController">
+                <div class="row">
+                    <div class="col-sm-16 col-md-16 subtitle">How much could I save by transferring my
+                        balances?
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-16 col-md-16">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#input">Input</a></li>
+                            <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
+                            <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-16 col-md-16">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="input">
+                                <div class="row">
+                                    <div class="col-sm-24 col-md-24">
+                                        <p class="bt_section_title">Regarding the Card Your're Transferring
+                                            to:</p>
+                                    </div>
+                                </div>
+                                <!--row-->
+
+                                <form name="balanceTransferForm" class="form-horizontal" novalidate role="form">
+
+                                    <div class="form-group">
+                                        <label for="intro_int_rate" class="col-xs-24 col-sm-24 control-label">
+                                            <span class="text-danger">1.*</span> Introductory Interest Rate
+                                            (APR)
+                                        </label>
+
+                                        <div class="col-xs-24 col-sm-24">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="intro_int_rate"
+                                                   id="intro_int_rate"
+                                                   placeholder="0.0"
+                                                   ng-model="intro_int_rate"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted || balanceTransferForm.intro_int_rate.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.intro_int_rate.$error.required">Introductory Interest Rate Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.intro_int_rate.$error.pattern">Enter Numeric Percentage Only!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="intro_term" class="col-xs-24 col-sm-24 control-label">
+                                            <span class="text-danger">2.*</span> Introductory Term (months)
+                                        </label>
+
+                                        <div class="col-xs-24 col-sm-24">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="intro_term"
+                                                   id="intro_term"
+                                                   placeholder="0"
+                                                   ng-model="intro_term"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted || balanceTransferForm.intro_term.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.intro_term.$error.required">Introductory Term Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.intro_term.$error.pattern">Enter Numeric Value Only!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="regular_apr" class="col-xs-12 col-sm-12 control-label">
+                                            <span class="text-danger">3.*</span> Regular Interest Rate (APR)
+                                        </label>
+
+                                        <div class="col-xs-24 col-sm-24">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="regular_apr"
+                                                   id="regular_apr"
+                                                   placeholder="0.0"
+                                                   ng-model="regular_apr"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted || balanceTransferForm.regular_apr.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.regular_apr.$error.required">Regular Rate Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.regular_apr.$error.pattern">Enter Numeric Percentage Only!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="annual_fee" class="col-xs-24 col-sm-24 control-label">
+                                            <span class="text-danger">4.*</span> Annual Fee
+                                        </label>
+
+                                        <div class="col-xs-24 col-sm-24">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="annual_fee"
+                                                   id="annual_fee"
+                                                   placeholder="0.00"
+                                                   ng-model="annual_fee"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted || balanceTransferForm.annual_fee.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.annual_fee.$error.required">Regular Rate Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.annual_fee.$error.pattern">Enter Numeric Percentage Only!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="percent_of_balance_fee"
+                                               class="col-xs-24 col-sm-24 control-label">
+                                            <span class="text-danger">5.*</span> Balance Transfer Fee = % of
+                                            Balance
+                                        </label>
+
+                                        <div class="col-xs-24 col-sm-24">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="percent_of_balance_fee"
+                                                   id="percent_of_balance_fee"
+                                                   placeholder="0.00"
+                                                   ng-model="percent_of_balance_fee"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted || balanceTransferForm.percent_of_balance_fee.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.percent_of_balance_fee.$error.required">Balance Transfer Fee Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.percent_of_balance_fee.$error.pattern">Enter Numeric Percentage Only!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="maximum_balance_fee"
+                                               class="col-xs-24 col-sm-24 control-label">
+                                            <span class="text-danger">6.</span> Balance Transfer Fee = Maximum
+                                            Fee
+                                        </label>
+
+                                        <div class="col-xs-24 col-sm-24">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="maximum_balance_fee"
+                                                   id="maximum_balance_fee"
+                                                   placeholder="0.00"
+                                                   ng-model="maximum_balance_fee"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted || balanceTransferForm.maximum_balance_fee.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.maximum_balance_fee.$error.pattern">Enter Numeric Value Only!</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-24 col-sm-24">
+                                            <p class="bt_section_title">Regarding Your Current CreditCard(s):</p>
+                                        </div>
+                                    </div>
+                                    <!--row-->
+
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <span class="bt_col_title">Card</span>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span class="bt_col_title">Balance</span>
+                                        </div>
+
+                                        <div class="col-xs-offset-1 col-sm-offset-1 col-xs-6 col-sm-6">
+                                            <span class="bt_col_title">Interest Rate</span>
+                                        </div>
+
+                                        <div class="col-xs-offset-1 col-sm-offset-1 col-xs-6 col-sm-6">
+                                            <span class="bt_col_title">Monthly</span>
+                                        </div>
+                                    </div>
+                                    <!--row-->
+
+                                    <div class="form-group">
+                                        <label for="balance1"
+                                               class="col-xs-4 col-sm-4 control-label">
+                                            <span class="text-danger">1.*</span>
+                                        </label>
+
+                                        <div class="col-xs-6 col-sm-6">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="balance"
+                                                   id="balance1"
+                                                   placeholder="0.00"
+                                                   ng-model="balance1"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   required
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="apr"
+                                                       id="apr1"
+                                                       placeholder="0.00"
+                                                       ng-model="apr1"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="payment"
+                                                       id="payment1"
+                                                       placeholder="0.00"
+                                                       ng-model="payment1"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="custom-error text-center"
+                                             ng-show="balanceTransferForm.$submitted
+													 || balanceTransferForm.balance.$touched
+													 || balanceTransferForm.apr.$touched
+													 || balanceTransferForm.payment.$touched">
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.balance.$error.required">Balance Transfer Fee Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.balance.$error.pattern">Enter Numeric Percentage Only!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.apr.$error.required">Annual Percentage Rate Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.apr.$error.pattern">Enter Numeric Percentage Only!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.payment.$error.required">Monthly Payment Required!</span>
+													<span class="alert-danger"
+                                                          ng-show="balanceTransferForm.payment.$error.pattern">Enter Numeric Value Only!</span>
+                                        </div>
+                                        <!--errors-->
+                                    </div>
+                                    <!--form-group-->
+
+                                    <div class="form-group">
+                                        <label for="balance2"
+                                               class="col-xs-4 col-sm-4 control-label">
+                                            <span class="text-danger">2.</span>
+                                        </label>
+
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="balance"
+                                                       id="balance2"
+                                                       placeholder="0.00"
+                                                       ng-model='balance2'
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="apr"
+                                                       id="apr2"
+                                                       placeholder="0.00"
+                                                       ng-model="apr2"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="payment"
+                                                       id="payment2"
+                                                       placeholder="0.00"
+                                                       ng-model="payment2"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--form-group-->
+
+                                    <div class="form-group">
+                                        <label for="balance3"
+                                               class="col-xs-4 col-sm-4 control-label">
+                                            <span class="text-danger">3.</span>
+                                        </label>
+
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="balance"
+                                                       id="balance3"
+                                                       placeholder="0.00"
+                                                       ng-model='balance3'
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="apr"
+                                                       id="apr3"
+                                                       placeholder="0.00"
+                                                       ng-model="apr3"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="payment"
+                                                       id="payment3"
+                                                       placeholder="0.00"
+                                                       ng-model="payment3"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--row-->
+
+                                    <div class="form-group">
+                                        <label for="balance4"
+                                               class="col-xs-4 col-sm-4 control-label">
+                                            <span class="text-danger">4.</span>
+                                        </label>
+
+                                        <div class="col-xs-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="balance"
+                                                       id="balance4"
+                                                       placeholder="0.00"
+                                                       ng-model='balance4'
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="apr"
+                                                       id="apr4"
+                                                       placeholder="0.00"
+                                                       ng-model="apr4"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="payment"
+                                                       id="payment4"
+                                                       placeholder="0.00"
+                                                       ng-model="payment4"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                            </div>
+                                        </div>
+                                    </div><!--form-group-->
+
+                                    <div class="form-group">
+                                        <div class='col-xs-24 col-sm-24 text-center'>
+                                            <button type="submit" id="calculate_button"
+                                                    class="btn btn-default center-block calculator_button"
+                                                    ng-click="calculate()"
+                                                    ng-disabled="balanceTransferForm.$invalid">Calculate
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--form-group-->
+                                </form>
+                            </div>
+                            <!--input-->
+
+                            <div class="tab-pane" id="result">
+                                <div class="row">
+                                    <div class="col-xs-24 col-sm-24">
+                                        <p>By transferring balance, <strong>
+                                            <span ng-show="doIt==true">you will save</span>
+                                            <span ng-show="doIt==false">you will pay an additional</span>
+                                            {{totalIntroSavings}}</strong> in interest over the duration of
+                                            the balance transfer
+                                            promotion, net of fees of
+                                            <strong>{{totalFees}}</strong>
+                                        </p>
+
+                                        <p>After expiration of the promotional period, you will<strong>
+                                            <span ng-show="doIt==true">continue to save</span>
+                                            <span ng-show="doIt==false">begin to pay</span>
+                                        </strong> approximately <strong>{{totalRegularSavings}}</strong>
+                                            each month, compared to
+                                            your current situation.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-24 col-sm-24">
+                                        <button class="btn btn-danger btn-block"
+                                                onclick="window.location = 'http://www.creditcards.com/balance-transfer.php'">
+                                            Find a Balance Transfer Card Now!
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="graph">
+                                <div id="high_chart"></div>
+                            </div>
+
+                            <div class="tab-pane" id="about">
+                                <div class="row">
+                                    <div class="col-xs-24 col-sm-24">
+                                        <p>This calculator calculates the amount of interest you'll save by
+                                            transferring existing
+                                            balances to a lower rate card. It factors in the fees often
+                                            associated with transferring
+                                            balances. Be sure to read the fine print of any balance transfer
+                                            offer.</p>
+
+                                        <p>Note that the savings shown are based on the difference in total
+                                            simple interest charges
+                                            between the higher APR cards you entered and the lower promotional
+                                            balance transfer APR,
+                                            net of transfer fess. Your actual savings may be different based on
+                                            your purchase and
+                                            payment activity and other fees.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--tab-content-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--container-->
+</body>
+</html>
+
+
+

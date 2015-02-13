@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 19, 2014, 7:12:34 PM
+    Author     : davidcannon
+*/
+.title {
+    font-family: arial;
+    font-size:20px;
+    font-weight: bold;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.subtitle {
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #0C4E77;
+    color:#FFFFFF;
+    padding-top:8px;
+    padding-bottom:8px;
+    margin-bottom: 5px;
+}
+.bold_me {
+    font-weight:bold;
+}
+.calculator_button {
+    border:medium outset #ac2925;
+    color:#ac2925;
+    background-color:#ce8483;
+    font-weight: bold;
+}
+
+table th, td {
+    font-size:10px;
+}
+
+.scrolling-table {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.bt_section_title {
+    font-weight: bold;
+    padding:5px;
+    font-size:14px;
+}
+.bt_col_title {
+    font-weight: bold;
+}
+.bt_left_title {
+    display:inline-block;
+    padding-top:5px;
+}
+
+.custom-error {
+    font-size:12px;
+}
+.custom-error > .alert-danger {
+    display:inline-block;
+    width:100%;
+    margin-top:5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.btn-default {
+    font-weight: bold;
+}

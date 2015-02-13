@@ -1,0 +1,469 @@
+#breadcrumb a{
+	font-size: 10px;
+}
+
+#leftnav ul ul li a {
+	font-size: 11px;
+	font-weight: bold;
+	height: 15px;
+}
+
+.heading-container {
+	margin-bottom: 1em;
+}
+
+.r_title {
+	font-size: 20px;
+	font-weight: bold;
+
+}
+
+.r_datePosted {
+	font-size: 10pt;
+}
+
+.r_attributeTitle {
+	font-weight:bold;
+	font-size: 8pt;
+}
+
+.r_username {
+	font-size: 10pt;
+}
+
+.r_age {
+	font-size: 10pt;
+}
+
+.r_location {
+	font-size: 10pt;
+}
+
+.r_memberSince {
+	font-size: 10pt;
+}
+
+.r_postText {
+	font-size: 10pt;
+}
+
+#right {
+	float: right;
+	text-align: left !important;
+	width: 80%;
+}
+#left {
+	float: left !important;
+	text-align: left;
+	width: 100px;
+}
+p.clear {
+	clear: both;
+}
+
+#star_rating {
+	margin: -20px 0 0 0;
+}
+
+.star_rating {
+	margin: -10px 0 0 0;
+}
+
+.star-rating .outer > p {
+	display: inline;
+	font-size: 12pt;
+	float: right;
+	font-weight: bold;
+	margin: -28px 0 0 0;
+	right: -28px;
+}
+
+.rating-subhead {
+	font-weight:bold;
+	font-size: 10pt;
+	color: #003B76;
+}
+
+.rating-subinfo {
+	font-size: 10pt;
+	color: #003B76;
+	padding-bottom: 5px;
+}
+.tprogress li{
+	border-right: 1px solid #0c8290;
+	border-left: 1px solid #7af0fe;
+	width: 19%;
+}
+.tprogress li:first-child{
+	border-left: none;
+}
+.tprogress li:last-child{
+	border-right: none;
+}
+/* Adjust this to adjust the height of the progress bar */
+.tprogress li, .tprogress ul, .inner, .outer{
+	height: 10px;
+}
+.tprogress li, .inner{
+	float: left;
+}
+.tprogress p span{
+	margin-right: 7px;
+}
+.tprogress ul{
+	overflow: hidden;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.tprogress ul, .inner, .outer{
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+/* Adjust this to adjust the width of the progress bar */
+.tprogress ul, .inner p, .outer{
+	width: 150px;
+}
+.tprogress ul, .inner p, .outer > p{
+	position: relative;
+}
+.tprogress .inner{
+	-webkit-animation: show 1s;
+	-moz-animation: show 1s;
+	-ms-animation: show 1s;
+	-o-animation: show 1s;
+	animation: show 1s;
+
+	background: rgb(91,192,222); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(91,192,222) 0%, rgba(91,192,222) 50%, rgba(17,200,222,1) 51%, rgba(17,200,222,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(91,192,222)), color-stop(50%,rgba(91,192,222)), color-stop(51%,rgba(17,200,222,1)), color-stop(100%,rgba(17,200,222,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(91,192,222) 0%,rgba(91,192,222) 50%,rgba(17,200,222,1) 51%,rgba(17,200,222,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(91,192,222) 0%,rgba(91,192,222) 50%,rgba(17,200,222,1) 51%,rgba(17,200,222,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(91,192,222) 0%,rgba(91,192,222) 50%,rgba(17,200,222,1) 51%,rgba(17,200,222,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(91,192,222) 0%,rgba(91,192,222) 50%,rgba(17,200,222,1) 51%,rgba(17,200,222,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29cee1', endColorstr='#11c8de',GradientType=0 ); /* IE6-9 */
+
+	border: 1px solid #9a9a9a;
+	color: #fff;
+	margin: -1px 0 0 -1px;
+	overflow: hidden;
+	z-index: 999;
+}
+.tprogress .inner p{
+	font-weight: bold;
+	margin: 5px 5px 0 0;
+	text-align: right;
+}
+.tprogress .inner, .outer{
+	position: relative;
+}
+.tprogress .outer{
+	background-color: #efefef;
+	display: block;
+	margin: 1px;
+	margin: 5px auto;
+}
+.tprogress .outer > p {
+	display: inline;
+	float: right;
+	font-weight: bold;
+	margin: -15px 0px 0 0;
+	right: -30px;
+}
+
+.tprogress .inner1 {
+	width: 92%;
+}
+
+.tprogress .inner2 {
+	width: 96%;
+}
+
+.tprogress .inner3 {
+	width: 98%;
+}
+
+.tprogress .inner4 {
+	width: 98%;
+}
+
+.rating-gly {
+	font-family: 'Glyphicons Halflings';
+}
+.rating-gly-star {
+	font-family: 'Glyphicons Halflings';
+	padding-left: 2px;
+}
+
+.rating-gly-star .rating-stars:before {
+	padding-left: 2px;
+}
+
+.rating-lg .rating-gly-star, .rating-lg .rating-gly-star .rating-stars:before {
+	padding-left: 4px;
+}
+
+.rating-xl .rating-gly-star, .rating-xl .rating-gly-star .rating-stars:before {
+	padding-left: 2px;
+}
+
+.rating-active {
+	cursor: default;
+}
+
+.rating-disabled {
+	cursor: not-allowed;
+}
+
+.rating-uni {
+	font-size: 1.2em;
+	margin-top: -5px;
+}
+
+.rating-container {
+	position: relative;
+	vertical-align: middle;
+	display: inline-block;
+	color: #e3e3e3;
+	overflow: hidden;
+	min-height: 1em;
+}
+
+.rating-container:before {
+	content: attr(data-content);
+}
+
+.rating-container .rating-stars {
+	position: absolute;
+	left: 0;
+	top: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #FDBB37;
+	transition: all 0.25s ease-out;
+	-o-transition: all 0.25s ease-out;
+	-moz-transition: all 0.25s ease-out;
+	-webkit-transition: all 0.25s ease-out;
+	min-height: 1em;
+}
+
+.rating-container .rating-stars:before {
+	content: attr(data-content);
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+}
+
+.rating-container-rtl {
+	position: relative;
+	vertical-align: middle;
+	display: inline-block;
+	overflow: hidden;
+	color: #FDBB37;
+}
+
+.rating-container-rtl:before {
+	content: attr(data-content);
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+}
+
+.rating-container-rtl .rating-stars {
+	position: absolute;
+	left: 0;
+	top: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #e3e3e3;
+	transition: all 0.25s ease-out;
+	-o-transition: all 0.25s ease-out;
+	-moz-transition: all 0.25s ease-out;
+	-webkit-transition: all 0.25s ease-out;
+}
+
+.rating-container-rtl .rating-stars:before {
+	content: attr(data-content);
+}
+
+/**
+ * Rating sizes
+ */
+.rating-xl {
+	font-size: 4.89em;
+}
+
+.rating-lg {
+	font-size: 3.91em;
+}
+
+.rating-md {
+	font-size: 3.13em;
+}
+
+.rating-sm {
+	font-size: 2.5em;
+}
+
+.rating-xs {
+	font-size: 2em;
+}
+
+/**
+ * Clear rating button
+ */
+.star-rating .clear-rating, .star-rating-rtl .clear-rating {
+	color: #aaa;
+	cursor: not-allowed;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 60%;
+}
+
+.clear-rating-active {
+	cursor: pointer !important;
+}
+
+.clear-rating-active:hover {
+	color: #843534;
+}
+
+.star-rating .clear-rating {
+	padding-right: 5px;
+}
+
+/**
+ * Caption
+ */
+.star-rating .caption, .star-rating-rtl .caption {
+	color: #ffffff;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 55%;
+}
+
+.star-rating .caption {
+	padding-left: 5px;
+}
+
+.star-rating-rtl .caption {
+	padding-right: 5px;
+}
+
+.star-rating h3 {
+	color: #003B76;
+	font-weight: bold;
+
+}
+
+.star-rating h4{
+	color: #003B76;
+}
+
+.starrating_info {
+	float: right;
+	font-color: #999999;
+}
+
+.glyphicon { margin-right:5px;}
+.rating .glyphicon {font-size: 22px;}
+.rating-num { margin-top:0px;font-size: 54px; }
+.progress { margin-bottom: 5px;}
+.progress-bar { text-align: left; color: #000000; }
+.rating-desc .col-md-3 {padding-right: 0px;}
+.sr-only { margin-left: 5px;overflow: visible;clip: auto; }
+
+#hideProductReviews {
+	display: none;
+}
+
+.cc-card-art-align .star-rating {
+	margin-top: -10px;
+}
+
+.cc-card-art-align .category-total-reviews {
+	margin-bottom:10px;
+}
+
+.cc-card-art-align .category-total-reviews a {
+	color:#666666;
+	text-decoration: none;
+}
+
+.cc-card-art-align .category-total-reviews a:hover {
+	text-decoration: underline;
+}
+
+.cc-card-art-align .label-default {
+	background-color: #FFFFFF;
+}
+.cc-card-art-align .label {
+	border-radius: 0.0em;
+	color: #000000;
+	display: inline;
+	font-size: 100%;
+	font-weight: 700;
+	line-height: 1;
+	padding: 0.2em 0.6em 0.3em;
+	text-align: center;
+	vertical-align: baseline;
+	white-space: nowrap;
+}
+
+#user-reviews {
+	list-style: none;
+}
+
+#user-reviews > li {
+	margin: 3em 0;
+}
+
+.pagination-button {
+	padding: 0.3em;
+	cursor: pointer;
+}
+
+#reviews-pagination input {
+	width: 3em;
+	text-align: center;
+	height: 34px;
+	font-size: 1em;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: .3em;
+	margin: 0 .3em;
+}
+
+#reviews-pagination {
+	margin: auto;
+	text-align: center;
+}
+
+#record-count-info {
+	margin: 1em auto;
+	text-align: center;
+}
+
+#sort-by {
+	margin-top: 1em;
+}
+
+#average-rating {
+	padding-left: 2em;
+}
+
+#average-rating p  {
+	right: -2.2em;
+}
+
+.category-total-reviews {
+	padding-left: 1em;
+}
+
+.card-category-block .res-schumer-box .star-rating {
+	margin: .5em 0 0 .7em;
+}
+
+#showProductReviews span.glyphicon-star:before {
+	content: "\2605";
+}

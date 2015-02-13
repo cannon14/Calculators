@@ -1,0 +1,574 @@
+<!doctype html>
+<html ng-app="CalculatorApplication">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/siteStyles.css">
+
+    <script src="vendor/jquery-1.11.1.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/highstock/highstock.js"></script>
+    <script src="vendor/angular.min.js"></script>
+
+    <script src="js/global.js"></script>
+    <script src="js/Calculator.js"></script>
+    <script src="js/ComparisonCalculator.js"></script>
+    <script src="js/CashbackLowInterestCalculator.js"></script>
+    <script src="js/CashbackLowInterestController.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#graphTab').click(function () {
+                setTimeout(function () {
+                    $('#high_chart').highcharts().reflow();
+                }, 10);
+            });
+
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+</head>
+
+<body ng-controller="CashbackLowInterestController">
+<div class="container">
+    <div class="row">
+        <div class="title col-md-12 text-center">Comparison Calculator</div>
+    </div>
+    <div class="row">
+        <div class="subtitle col-md-12 text-center">Which is better: Cash Back or Low Interest Card?</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-16 col-md-16">
+            <div class="cal-hldr" ng-controller="CashbackLowInterestController">
+
+                <div class="row">
+                    <div class="subtitle col-sm-16 col-md-16">Which is better: Cash Back or Low Interest Card?
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-16 col-md-16">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#input">Input</a></li>
+                            <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
+                            <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-16 col-md-16">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="input">
+                                <div class='row'>
+                                    <div class='col-xs-24 col-sm-24'>
+                                        <form name="comparisonForm" class="form-horizontal" novalidate
+                                              role="form">
+
+                                            <div class="form-group">
+                                                <label for="principal" class="col-xs-12 col-sm-12 text-left
+														control-label">
+                                                    <span class="text-danger">1.*</span>Current Balance:
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="principal"
+                                                           id="principal"
+                                                           placeholder="0.00"
+                                                           ng-model="principal"
+                                                           ng-model-options="{updateOn: 'blur'}"
+                                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                           required>
+                                                </div>
+
+                                                <div class="custom-error text-center"
+                                                     ng-show="comparisonForm.$submitted || comparisonForm.principal.$touched">
+															<span class="alert-danger"
+                                                                  ng-show="comparisonForm.principal.$error.required">Principal Amount Required!</span>
+															<span class="alert-danger"
+                                                                  ng-show="comparisonForm.principal.$error.pattern">Enter Numeric Dollar Amount Only!</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="years" class="col-xs-12 col-sm-12 control-label">
+                                                    <span class="text-danger">2.*</span> Years you will use card:
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="years"
+                                                           id="years"
+                                                           placeholder="0"
+                                                           ng-model="years"
+                                                           ng-model-options="{updateOn: 'blur'}"
+                                                           required
+                                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                </div>
+                                                <div class="custom-error text-center"
+                                                     ng-show="comparisonForm.$submitted || comparisonForm.years.$touched">
+															<span class="alert-danger"
+                                                                  ng-show="comparisonForm.years.$error.required">Years Required!</span>
+															<span class="alert-danger"
+                                                                  ng-show="comparisonForm.years.$error.pattern">Enter Numeric Value Only!</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="charges" class="col-xs-12 col-sm-12 control-label">
+                                                    <span class="text-danger">3.</span> Monthly Charges:
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="charges"
+                                                           id="charges"
+                                                           placeholder="0.00"
+                                                           ng-model="charges"
+                                                           ng-model-options="{updateOn: 'blur'}"
+                                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                </div>
+
+                                                <div class="custom-error text-center"
+                                                     ng-show="comparisonForm.$submitted || comparisonForm.charges.$touched">
+															<span class="alert-danger"
+                                                                  ng-show="comparisonForm.charges.$error.required">Monthly Charges Required!</span>
+															<span class="alert-danger"
+                                                                  ng-show="comparisonForm.charges.$error.pattern">Enter Numeric Dollar Amount Only!</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="payment" class="col-xs-12 col-sm-12 control-label">
+                                                    <span class="text-danger">4.</span> Estimated monthly
+                                                    payments:
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="payment"
+                                                           id="payment"
+                                                           placeholder="0.00"
+                                                           ng-model="payment"
+                                                           ng-model-options="{updateOn: 'blur'}"
+                                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                </div>
+
+                                                <div class="custom-error text-center"
+                                                     ng-show="comparisonForm.$submitted || comparisonForm.payment.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.payment.$error.required">Monthly Charges Required!</span>
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.payment.$error.pattern">Enter Numeric Dollar Amount Only!</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-xs-offset-12 col-sm-offest-12
+														col-xs-6 col-sm-6 text-center"><strong>Cash Back</strong></div>
+                                                <div class="col-xs-6 col-sm-6 text-center"><strong>Low
+                                                    Interest</strong></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24">
+                                                    <div class="form-group">
+                                                        <label for="cash_back_rate"
+                                                               class="col-xs-12 col-xs-12 control-label">
+                                                            <span class="text-danger">5.</span> Introductory
+                                                            interest rate:
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="intro_rate"
+                                                                   id="cash_back_rate"
+                                                                   placeholder="0.0"
+                                                                   ng-model="cash_back_rate"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="col-xs-6 col-xm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="intro_rate"
+                                                                   id="low_interest_rate"
+                                                                   placeholder="0.0"
+                                                                   ng-model="low_interest_rate"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.intro_rate.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.intro_rate.$error.pattern">Enter Numeric Percentage Value Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24 col-sm-24">
+                                                    <div class="form-group">
+                                                        <label for="payment" class="col-xs-12 col-sm-12
+																	   control-label">
+                                                            <span class="text-danger">6.</span> Introductory
+                                                            term (months):
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="intro_term"
+                                                                   id="cash_back_term"
+                                                                   placeholder="0.0"
+                                                                   ng-model="cash_back_term"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="intro_term"
+                                                                   id="low_interest_term"
+                                                                   placeholder="0.0"
+                                                                   ng-model="low_interest_term"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.intro_term.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.intro_term.$error.pattern">Enter Numeric Percentage Value Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24 col-sm-24">
+                                                    <div class="form-group">
+                                                        <label for="payment" class="col-xs-12 col-sm-12
+																control-label">
+                                                            <span class="text-danger">7.</span> Regular Interest
+                                                            Rate (APR):
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="regular_rate"
+                                                                   id="cash_back_regular_rate"
+                                                                   placeholder="0.0"
+                                                                   ng-model="cash_back_regular_rate"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="regular_rate"
+                                                                   id="low_interest_regular_rate"
+                                                                   placeholder="0.0"
+                                                                   ng-model="low_interest_regular_rate"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.regular_rate.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.regular_rate.$error.pattern">Enter Numberic Percentage Value Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24 col-sm-24">
+                                                    <div class="form-group">
+                                                        <label for="payment" class="col-xs-12
+																col-sm-12 control-label">
+                                                            <span class="text-danger">8.</span> Annual Fee:
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="annual_fee"
+                                                                   id="cash_back_annual_fee"
+                                                                   placeholder="0.00"
+                                                                   ng-model="cash_back_annual_fee"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="annual_fee"
+                                                                   id="low_interest_annual_fee"
+                                                                   placeholder="0.00"
+                                                                   ng-model="low_interest_annual_fee"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.annual_fee.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.annual_fee.$error.pattern">Enter Numeric Dollar Amount Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24 col-sm-24">
+                                                    <div class="form-group">
+                                                        <label for="payment" class="col-xs-12 col-sm-12
+																control-label">
+                                                            <span class="text-danger">9.</span> % earned on
+                                                            regular purchases:
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="cashback_percent_regular"
+                                                                   id="cashback_percent_regular"
+                                                                   placeholder="0.0"
+                                                                   ng-model="cashback_percent_regular"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.cashback_percent_regular.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.cashback_percent_regular.$error.pattern">Enter Numeric Percentage Value Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24 col-sm-24">
+                                                    <div class="form-group">
+                                                        <label for="payment" class="col-xs-12 col-sm 12
+																control-label">
+                                                            <span class="text-danger">10.</span> % earned on
+                                                            specific brands/items:
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="cashback_percent_specific"
+                                                                   id="cashback_percent_specific"
+                                                                   placeholder="0.0"
+                                                                   ng-model="cashback_percent_specific"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.cashback_percent_specific.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.cashback_percent_specific.$error.pattern">Enter Numeric Percentage Value Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-24 col-sm-24">
+                                                    <div class="form-group">
+                                                        <label for="payment" class="col-xs-12
+																col-sm-12 control-label">
+                                                            <span class="text-danger">11.</span> Portion of
+                                                            monthly charge that
+                                                            qualifies for brand specific reward:
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="cashback_specific_reward"
+                                                                   id="cashback_specific_reward"
+                                                                   placeholder="0.0"
+                                                                   ng-model="cashback_specific_reward"
+                                                                   ng-model-options="{updateOn: 'blur'}"
+                                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+
+                                                        </div>
+
+                                                        <div class="custom-error text-center"
+                                                             ng-show="comparisonForm.$submitted || comparisonForm.cashback_specific_reward.$touched">
+                                                <span class="alert-danger"
+                                                      ng-show="comparisonForm.cashback_specific_reward.$error.pattern">Enter Numeric Percentage Value Only!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-xs-24 col-sm-24 text-center">
+                                                    <button type="submit" id="calculate_button"
+                                                            class="btn btn-default center-block calculator_button"
+                                                            ng-click="calculate()"
+                                                            ng-disabled="comparisonForm.$invalid">Calculate
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--col-lg-12-->
+                                </div>
+                                <!--row-->
+                            </div>
+                            <!--input-->
+
+                            <div class="tab-pane" id="result">
+                                <div class="row">
+                                    <div class="col-xs-24">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <td></td>
+                                                <td><strong>Cash Back</strong></td>
+                                                <td><strong>Low Interest</strong></td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><strong>Interest:</strong></td>
+                                                <td>{{cbTotalInterest}}</td>
+                                                <td>{{liTotalInterest}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Fees:</strong></td>
+                                                <td>{{cbTotalFees}}</td>
+                                                <td>{{liTotalFees}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Cash award earned:</strong></td>
+                                                <td>{{totalCashAward}}</td>
+                                                <td>N/A</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Net cost:</strong></td>
+                                                <td>{{cbNetCost}}</td>
+                                                <td>{{liNetCost}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div ng-bind-html="result"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-24">
+                                        <button class="btn btn-danger btn-block"
+                                                onclick="window.location = 'http://www.creditcards.com/cash-back.php'">
+                                            Find a Cash Back Card Now!
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-xs-24">
+                                        <button class="btn btn-danger btn-block"
+                                                onclick="window.location = 'http://www.creditcards.com/low-interest.php'">
+                                            Find a Low
+                                            Interest Card Now!
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="graph" style="position:relative">
+                                <div class="row">
+                                    <div class="col-xs-24">
+                                        <div id="high_chart"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-24">
+                                        <p>This graph compares interest and fees paid with a cash back and low
+                                            interest card. It
+                                            also shows the total amount earned in cash awards at the end of
+                                            {{numOfYears}}
+                                            years.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="about">
+                                <div class="row">
+                                    <div class="col-xs-24">
+                                        <p>Cash Back cards allow you to earn a percentage of your charges back
+                                            in the form of a cash
+                                            award at the end of each year. Often, Cash Back cards have a higher
+                                            interest rate and
+                                            annual fee compared to an ordinary credit card.</p>
+
+                                        <p>This calculator compares a Cash Back card with a Low Interest rate
+                                            card. This information
+                                            will help you determine which card is better for your. If you pay
+                                            your balance in full
+                                            each month and owe nothing, the Cash Back card will be advantageous
+                                            to you.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--col-md-16-->
+    </div><!--row-->
+</div><!--container-->
+</body>
+</html>
+
+
+

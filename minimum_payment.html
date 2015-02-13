@@ -1,0 +1,295 @@
+<!doctype html>
+<html ng-app="CalculatorApplication">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/siteStyles.css">
+
+    <script src="vendor/jquery-1.11.1.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/highstock/highstock.js"></script>
+    <script src="vendor/angular.min.js"></script>
+
+    <script src="js/global.js"></script>
+    <script src="js/Calculator.js"></script>
+    <script src="js/MinimumPaymentCalculator.js"></script>
+    <script src="js/MinimumPaymentController.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#graphTab').click(function () {
+                setTimeout(function () {
+                    $('#high_chart').highcharts().reflow();
+                }, 10);
+            });
+
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+</head>
+
+<body ng-controller="MinimumPaymentController">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center title">Minimum Payment Calculator</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center subtitle">The True Cost Of Paying The Minimum</div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#input">Input</a></li>
+                <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
+                <li><a href="#table" id="tableTab" ng-show="showTabs == true">Table</a></li>
+                <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-16 col-md-16">
+            <div class="tab-content">
+                <div class="tab-pane active" id="input">
+                    <div class='row'>
+                        <div class='col-xs-24 col-sm-24'>
+                            <form name="minimum_payment_form" role="form">
+                                <div class="form-group">
+                                    <label for="current_balance" class="control-label">
+                                        <span class="text-danger">1.</span> Current Balance:
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="current_balance"
+                                           id="current_balance"
+                                           placeholder="0.00"
+                                           ng-model="current_balance"
+                                           ng-model-options="{updateOn: 'blur'}"
+                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                           required>
+
+                                    <div class="custom-error text-center"
+                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.current_balance.$touched">
+                                        <span class="alert-danger"
+                                              ng-show="minimum_payment_form.current_balance.$error.required">Principal Amount Required!</span>
+                                        <span class="alert-danger"
+                                              ng-show="minimum_payment_form.current_balance.$error.pattern">Enter Dollar Amounts Only!</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="interest_rate" class="control-label">
+                                        <span class="text-danger">2.</span> Interest Rate (APR)
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="interest_rate"
+                                           id="interest_rate" ol-md-12
+                                           placeholder="0.0"
+                                           ng-model="interest_rate"
+                                           ng-model-options="{updateOn: 'blur'}"
+                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                           required>
+
+                                    <div class="custom-error text-center"
+                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.interest_rate.$touched">
+                                        <span class="alert-danger"
+                                              ng-show="minimum_payment_form.interest_rate.$error.required">Interest Rate Required!</span>
+                                        <span class="alert-danger"
+                                              ng-show="minimum_payment_form.interest_rate.$error.pattern">Enter Numeric Percentage Only!</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        <span class="text-danger">3. * </span> What are the
+                                        components of your minimum
+                                        payment calculation?
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="percentage_of_balance" ol-md-12class="control-label">
+                                        <span class="text-danger">3a.</span> Percentage of Balance:
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           name="percentage_of_balance"
+                                           id="percentage_of_balance"
+                                           placeholder="0.0"
+                                           ng-model="percentage_of_balance"
+                                           ng-model-options="{updateOn: 'blur'}"
+                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                           required>
+
+                                    <div class="custom-error text-center"
+                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.percentage_of_balance.$touched">
+                                        <span class="alert-danger"
+                                              ng-show="minimum_payment_form.percentage_of_balance.$error.pattern">Enter Numeric Percentage Only!</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="minimum_dollar_amount" class="control-label">
+                                        <span class="text-danger">3b.</span>
+                                        Minimum Dollar Amount:
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="minimum_dollar_amount"
+                                           id="minimum_dollar_amount"
+                                           placeholder="0.00"
+                                           ng-model="minimum_dollar_amount"
+                                           ng-model-options="{updateOn: 'blur'}"
+                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                           required>
+
+                                    <div class="custom-error text-center"
+                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.minimum_dollar_amount.$touched">
+                                        <span class="alert-danger"
+                                              ng-show="minimum_payment_form.minimum_dollar_amount.$error.pattern">Enter Dollar Amounts Only!</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-24 col-sm-24 text-center">
+                                        <button type="button" id="calculate_button"
+                                                class="btn btn-default center-block calculator_button"
+                                                ng-click="calculate()"
+                                                ng-disabled="minimum_payment_form.$invalid">
+                                            Calculate
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--col-lg-->
+                    </div>
+                    <!--row-->
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24 note">
+                            <span class="text-danger">* </span>Your account agreement or monthly
+                            statement will contain
+                            language similar to "your minimum payment is 3% of your balance or $25,
+                            whichever isol-md-12
+                            greater." These are the values you will need to enter in 3(a) and 3(b).
+                        </div>
+                    </div>
+                </div>
+                <!--input-->
+                <div class="tab-pane" id="result">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24">
+                            <p>
+                                It will take you <strong>{{months}}</strong> months to pay off your
+                                debt,
+                                if you make minimum monthly payments of <strong>{{minimum}}</strong>
+                                on a balance of <strong>{{principal}}</strong> with a
+                                <strong>{{apr}} APR</strong>. In that time, you will pay
+                                <strong>{{interest}}</strong> in interest charges
+                            </p>
+
+                            <p>
+                                We recommend that you pay more than the minimum
+                                payment whenever possible. If you make only the minimum
+                                payment each month, it will take you longer and cost you
+                                more to clear your balance.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24">
+                            <button class="btn btn-danger btn-block"
+                                    onclick="window.location = 'http://www.creditcards.com/low-interest.php'">
+                                Find a Low Interest Card Now!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="table">
+                    <div class="table-responsive scrolling-table">
+                        <table
+                                class="table table-condensed table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Minimum Payment</th>
+                                <th>Principal Paid</th>
+                                <th>Interest Paid</th>
+                                <th>Remaining Balance</th>
+                                <th>Total Interest</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="element in tableData ">
+                                <td>{{element.month}}</td>
+                                <td>{{element.payment}}</td>
+                                <td>{{element.principal}}</td>
+                                <td>{{element.interest}}</td>
+                                <td>{{element.owed}}</td>
+                                <td>{{element.totalInterest}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="graph">
+                    <div id="high_chart"></div>
+                </div>
+                <div class="tab-pane" id="about">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24">
+                            <p>
+                                The minimum payment on credit card debt is calculated as a
+                                percentage of your total current balance, or as all interest plus 1
+                                percent of the principal. Card issuers also set a floor to their
+                                minimum payments -- a fixed dollar amount that the minimum
+                                payment won't fall below.
+                            </p>
+
+                            <p>
+                                The minimum payment drops as your balance is paid, but thanks to
+                                compounding interest, you will end up paying for a long, long time
+                                if
+                                you pay only the minimum.
+                            </p>
+
+                            <p>
+                                Check out how much interest you will pay over the life of the debt
+                                by
+                                using this calculator. To begin, click the "Inputs" tab and enter
+                                your
+                                information. Click "Calculate" and then view detailed information by
+                                clicking "Results", "Graphs", and "Tables."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--container-->
+</body>
+</html>
+
+
+
