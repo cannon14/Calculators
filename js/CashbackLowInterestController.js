@@ -1,27 +1,59 @@
 var calculatorApp = angular.module('CalculatorApplication', []);
 
+calculatorApp.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('click', function () {
+                this.select();
+            });
+        }
+    };
+});
+
 calculatorApp.controller('CashbackLowInterestController', ['$scope', '$sce', function ($scope, $sce) {
 
     var calc = new CashbackLowInterestCalculator();
 
+    $scope.principal = 3000.00;
+    $scope.years = 3;
+    $scope.charges = 350.00;
+    $scope.payment = 450.00;
+
+    $scope.cash_back_rate = 0.0;
+    $scope.low_interest_rate = 0.0;
+
+    $scope.cash_back_term = 12;
+    $scope.low_interest_term = 12;
+
+    $scope.cash_back_regular_rate = 12.0;
+    $scope.low_interest_regular_rate = 9.0;
+
+    $scope.cash_back_annual_fee = 25.00;
+    $scope.low_interest_annual_fee = 0.00;
+
+    $scope.cashback_percent_regular = 1.0;
+    $scope.cashback_percent_specific = 3.0;
+    $scope.cashback_specific_reward = 50.00;
+
     $scope.calculate = function () {
 
         //Retrieve the variables from the view...give them default values in case the user hits calculate.
-        var principal = $scope.principal ? $scope.principal : 1000.00;
-        var years = $scope.years ? $scope.years : 2;
-        var charges = $scope.charges ? $scope.charges : 200.00;
-        var payment = $scope.payment ? $scope.payment : 100.00;
-        var cash_back_rate = $scope.cash_back_rate ? $scope.cash_back_rate : 11.9;
-        var low_interest_rate = $scope.low_interest_rate ? $scope.low_interest_rate : 9.9;
-        var cash_back_term = $scope.cash_back_term ? $scope.cash_back_term : 12;
-        var low_interest_term = $scope.low_interest_term ? $scope.low_interest_term : 12;
-        var cash_back_regular_rate = $scope.cash_back_regular_rate ? $scope.cash_back_regular_rate : 12.9;
-        var low_interest_regular_rate = $scope.low_interest_regular_rate ? $scope.low_interest_regular_rate : 9.9;
-        var cash_back_annual_fee = $scope.cash_back_annual_fee ? $scope.cash_back_annual_fee : 50.00;
-        var low_interest_annual_fee = $scope.low_interest_annual_fee ? $scope.low_interest_annual_fee : 50.00;
-        var cashback_percent_regular = $scope.cashback_percent_regular ? $scope.cashback_percent_regular : 1.0;
-        var cashback_percent_specific = $scope.cashback_percent_specific ? $scope.cashback_percent_specific : 3.0;
-        var cashback_specific_reward = $scope.cashback_specific_reward ? $scope.cashback_specific_reward : 50.00;
+        var principal = $scope.principal ? $scope.principal : 0.00;
+        var years = $scope.years ? $scope.years : 0;
+        var charges = $scope.charges ? $scope.charges : 0.00;
+        var payment = $scope.payment ? $scope.payment : 0.00;
+        var cash_back_rate = $scope.cash_back_rate ? $scope.cash_back_rate : 0.0;
+        var low_interest_rate = $scope.low_interest_rate ? $scope.low_interest_rate : 0.0;
+        var cash_back_term = $scope.cash_back_term ? $scope.cash_back_term : 0;
+        var low_interest_term = $scope.low_interest_term ? $scope.low_interest_term : 0;
+        var cash_back_regular_rate = $scope.cash_back_regular_rate ? $scope.cash_back_regular_rate : 0.0;
+        var low_interest_regular_rate = $scope.low_interest_regular_rate ? $scope.low_interest_regular_rate : 0.0;
+        var cash_back_annual_fee = $scope.cash_back_annual_fee ? $scope.cash_back_annual_fee : 0.00;
+        var low_interest_annual_fee = $scope.low_interest_annual_fee ? $scope.low_interest_annual_fee : 0.00;
+        var cashback_percent_regular = $scope.cashback_percent_regular ? $scope.cashback_percent_regular : 0.0;
+        var cashback_percent_specific = $scope.cashback_percent_specific ? $scope.cashback_percent_specific : 0.0;
+        var cashback_specific_reward = $scope.cashback_specific_reward ? $scope.cashback_specific_reward : 0.00;
 
         calc.setPrincipal(principal);
         calc.setYears(years);
@@ -53,7 +85,6 @@ calculatorApp.controller('CashbackLowInterestController', ['$scope', '$sce', fun
         $scope.numOfYears = calc.getYears();
 
         $scope.displayChart();
-        $scope.showTabs = true;
     };
 
     $scope.displayChart = function () {
@@ -77,7 +108,7 @@ calculatorApp.controller('CashbackLowInterestController', ['$scope', '$sce', fun
                     enabled: true,
                     style: {
                         fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
                     }
                 }
             },
@@ -104,10 +135,7 @@ calculatorApp.controller('CashbackLowInterestController', ['$scope', '$sce', fun
                     grouping: 'true',
                     dataLabels: {
                         enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                        style: {
-                            textShadow: '0 0 3px black'
-                        }
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'black'
                     }
                 }
             },

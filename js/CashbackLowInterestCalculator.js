@@ -153,13 +153,13 @@ CashbackLowInterestCalculator.prototype.calculateDataPoints = function () {
     var differeceTotalInterest = cashbackTotalInterest - interestTotalInterest;
 
     if (differeceTotalInterest < 0) {
-        strResult += "<p>The Low Interest card will cost you <strong>" + toCurrency(Math.abs(differeceTotalInterest)) + "</strong> more in interest and fees compared to a Cash Back card over a " + this.getYears() + " year period.</p>";
+        strResult += "<p>The Low Interest card will cost you <strong>" + toCurrency(Math.abs(differeceTotalInterest) + this.getCardTwoTotalFees()) + "</strong> more in interest and fees compared to a Cash Back card over a " + this.getYears() + " year period.</p>";
         if (totalCashRewardEarned > 0) {
             strResult += "<p>Additionally, you will receive a total cash award of <strong>" + toCurrency(totalCashRewardEarned) + "</strong> with the Cash Back card during that period.</p>";
         }
 
     } else if (differeceTotalInterest > 0) {
-        strResult += "<p>The Cash Back card will cost you <strong>" + toCurrency(differeceTotalInterest) + "</strong> more in interest and fees compared to a Low Interest card over a " + this.getYears() + " year period.</p>";
+        strResult += "<p>The Cash Back card will cost you <strong>" + toCurrency(differeceTotalInterest + this.getTotalFees()) + "</strong> more in interest and fees compared to a Low Interest card over a " + this.getYears() + " year period.</p>";
 
         if (totalCashRewardEarned > 0) {
             strResult += "<p>However, you will receive a total cash award of <strong>" + toCurrency(totalCashRewardEarned) + "</strong> with the Cash Back card during that period.</p>";

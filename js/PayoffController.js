@@ -1,8 +1,33 @@
 var calculatorApp = angular.module('CalculatorApplication', []);
 
-calculatorApp.controller('PayoffController', ['$scope', function ($scope) {
+calculatorApp.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('click', function () {
+                this.select();
+            });
+        }
+    };
+});
+
+calculatorApp.controller('PayoffController', ['$scope', '$sce', function ($scope, $sce) {
 
     var calc = new PayoffCalculator();
+
+    $scope.current_balance = 3000.00;
+    $scope.interest_rate = 17.0;
+    $scope.monthly_charges = 0.00;
+    $scope.months_to_payoff = 12;
+    $scope.desired_monthly_payment = 0.00;
+
+    $scope.monthsToPayoffClicked = function() {
+        $scope.desired_monthly_payment = 0.00;
+    };
+
+    $scope.monthlyPaymentClicked = function() {
+        $scope.months_to_payoff = 0;
+    };
 
     $scope.calculate = function () {
 
@@ -42,6 +67,9 @@ calculatorApp.controller('PayoffController', ['$scope', function ($scope) {
         $scope.monthlyPayment = toCurrency(calc.getMonthlyPayment());
         $scope.totalInterest = toCurrency(calc.getTotalInterest());
         $scope.retry = calc.getRetry();
+        $scope.result = $sce.trustAsHtml(calc.getResult());
+        $scope.result2 = $sce.trustAsHtml(calc.getResult2());
+
         //Build the table, principal, and interest data for the charts and tables.
         calc.calculateDataPoints();
 
@@ -51,7 +79,6 @@ calculatorApp.controller('PayoffController', ['$scope', function ($scope) {
         $scope.interestData = calc.getInterestData();
 
         $scope.displayChart();
-        $scope.showTabs = true;
     };
 
     $scope.displayChart = function () {

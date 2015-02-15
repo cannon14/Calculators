@@ -27,13 +27,6 @@ and open the template in the editor.
 .bold_me {
     font-weight:bold;
 }
-.calculator_button {
-    border:medium outset #ac2925;
-    color:#ac2925;
-    background-color:#ce8483;
-    font-weight: bold;
-}
-
 table th, td {
     font-size:10px;
 }
@@ -68,4 +61,24 @@ table th, td {
 }
 .btn-default {
     font-weight: bold;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+.save_money {
+    color:#a94442;
+    margin-bottom:0;
+}
+.save_money_line {
+    color:#a94442;
+    height:10px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.nav-tabs > li a {
+    color:#a94442;
+    font-weight: bold;
+    padding: 10px 10px;
 }

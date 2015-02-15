@@ -20,6 +20,7 @@ function Calculator() {
     this.totalFees = 0.00;
     this.annualFee = 0.00;
     this.result = null;
+    this.result2 = null;
     this.retry = false;
     this.tableData = [];
     this.principalData = [];
@@ -121,6 +122,23 @@ Calculator.prototype.setResult = function (result) {
 Calculator.prototype.getResult = function () {
     return this.result;
 };
+
+/**
+ * Set the result2 string.
+ * @param result
+ */
+Calculator.prototype.setResult2 = function (result) {
+    this.result2 = result;
+};
+
+/**
+ * Get the result2 string
+ * @returns {null|*}
+ */
+Calculator.prototype.getResult2 = function () {
+    return this.result2;
+};
+
 
 /**
  * Calculate, set, and return the total interest.

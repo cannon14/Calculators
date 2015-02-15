@@ -1,8 +1,24 @@
 var calculatorApp = angular.module('CalculatorApplication', []);
 
+calculatorApp.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('click', function () {
+                this.select();
+            });
+        }
+    };
+});
+
 calculatorApp.controller('MinimumPaymentController', ['$scope', function ($scope) {
 
     var calc = new MinimumPaymentCalculator();
+
+    $scope.current_balance = 3000.00;
+    $scope.interest_rate = 17.0;
+    $scope.percentage_of_balance = 3.0;
+    $scope.minimum_dollar_amount = 25.00;
 
     $scope.calculate = function () {
 
@@ -31,7 +47,6 @@ calculatorApp.controller('MinimumPaymentController', ['$scope', function ($scope
         $scope.interestData = calc.getInterestData();
 
         $scope.displayChart();
-        $scope.showTabs = true;
     }
 
     $scope.displayChart = function () {
@@ -39,7 +54,6 @@ calculatorApp.controller('MinimumPaymentController', ['$scope', function ($scope
             chart: {},
             title: {
                 text: 'Interest Paid',
-                x: -20 //center
 
             },
             plotOptions: {

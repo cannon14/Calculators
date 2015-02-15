@@ -1,9 +1,40 @@
 var calculatorApp = angular.module('CalculatorApplication', []);
 
+calculatorApp.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('click', function () {
+                this.select();
+            });
+        }
+    };
+});
+
 calculatorApp.controller('BalanceTransferController', ['$scope', function ($scope) {
 
     var calc = new BalanceTransferCalculator();
-    $scope.balances = ['balance1', 'balance2', 'balance3', 'balance4'];
+
+    $scope.intro_int_rate = 3.9;
+    $scope.intro_term = 6;
+    $scope.regular_apr = 10.0
+    $scope.annual_fee = 0.00;
+    $scope.percent_of_balance_fee = 4.0;
+    $scope.maximum_balance_fee = 0.00;
+
+    $scope.balance1 = 3000.00;
+    $scope.apr1 = 17.00;
+    $scope.payment1 = 100.00;
+    $scope.balance2 = 3000.00;
+    $scope.apr2 = 17.0;
+    $scope.payment2 = 100.00;
+    $scope.balance3 = 3000.00;
+    $scope.apr3 = 17.0;
+    $scope.payment3 = 100.00;
+    $scope.balance4 = 0.00;
+    $scope.apr4 = 0.0;
+    $scope.payment4 = 0.00;
+
     $scope.calculate = function () {
 
         //Retrieve the variables from the view...give them default values in case the user hits calculate.
@@ -46,7 +77,6 @@ calculatorApp.controller('BalanceTransferController', ['$scope', function ($scop
         $scope.totalRegularSavings = toCurrency(calc.getTotalRegularSavings());
 
         $scope.displayChart();
-        $scope.showTabs = true;
     };
 
     $scope.displayChart = function () {
@@ -88,8 +118,7 @@ calculatorApp.controller('BalanceTransferController', ['$scope', function ($scop
             },
             tooltip: {
                 formatter: function () {
-                    return '<strong>Month:</strong> ' + (this.x+1) +
-                        '<br/><strong>' + this.series.name + '</strong>: $' + this.y + '<br/>' +
+                    return '<strong>' + this.series.name + '</strong>: $' + this.y + '<br/>' +
                         '<strong>Total:</strong> $' + this.point.stackTotal;
                 }
             },
@@ -98,10 +127,7 @@ calculatorApp.controller('BalanceTransferController', ['$scope', function ($scop
                     stacking: 'normal',
                     dataLabels: {
                         enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                        style: {
-                            textShadow: '0 0 3px black'
-                        }
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'black'
                     }
                 }
             },

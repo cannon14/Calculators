@@ -83,27 +83,31 @@ PayoffCalculator.prototype.doPayoffMonths = function () {
     var monthlyCharges = this.getMonthlyCharges();
     var payoffMonths = this.calculateMonthsToPayoff(apr, principal, monthlyPayment, monthlyCharges);
     var totalInterest = roundMoney(this.calculateTotalInterest(principal, monthlyPayment, monthlyCharges, apr, payoffMonths));
+    var result = '';
+    var lessResult = '';
 
     if (payoffMonths === 0 || isNaN(payoffMonths)) {
-        this.setRetry(true);
+        result += "<p>Your Desired Monthly Payment is less than the interest you owe. With these values, you will never be able to pay off your balance.</p>";
+        result += "<p>Please increase the Desired Monthly Payment and try again.</p>";
+        this.setResult(result);
     }
     else {
-        this.setRetry(false);
-    }
-    /*Delete when we are sure we won't use
-     else {
-     //calc payoffMonths if payment was $25 more a month
-     var lessPayoffMonths = (-1 * Math.log(1 - intRate * principal / (monthlyPayment - monthlyCharges + 25))) / (Math.log(1 + intRate));
-     var lessTotalInterest = Math.ceil((lessPayoffMonths * (monthlyPayment - monthlyCharges + 25)) - principal);
-     lessTotalInterest = totalInterest - lessTotalInterest;
-     lessPayoffMonths = Math.ceil(lessPayoffMonths);
+        result += "<p>At your current rate of spending, it will take <strong>" + payoffMonths + "</strong> monthly payments of <strong>" + toCurrency(monthlyPayment) + "</strong> to pay off your credit card balance.</p>";
+        result += "<p>If you were to pay off your debt immediately, you could avoid <strong>" + toCurrency(totalInterest) + "</strong> in interest costs.</p>";
+        this.setResult(result);
 
-     if (lessPayoffMonths > 0) {
-     this.setLessPayoffMonths(lessPayoffMonths);
-     this.setLessTotalInterest(lessTotalInterest);
-     }
-     }
-     */
+        //calc payoffMonths if payment was $25 more a month
+        var lessPayoffMonths = (-1 * Math.log(1 - toMpr(apr) * principal / (monthlyPayment - monthlyCharges + 25))) / (Math.log(1 + toMpr(apr)));
+        var lessTotalInterest = Math.ceil((lessPayoffMonths * (monthlyPayment - monthlyCharges + 25)) - principal);
+        lessTotalInterest = totalInterest - lessTotalInterest;
+        lessPayoffMonths = Math.ceil(lessPayoffMonths);
+
+        if (lessPayoffMonths > 0) {
+            lessResult += "<p>You might consider paying more each month.  Reducing your monthly charges or increasing your payment by <strong>$ 25</strong> per month,";
+            lessResult += " will reduce the months to repay to <strong>" + lessPayoffMonths + " months</strong> and will save you <strong>" + toCurrency(lessTotalInterest) + "</strong> in interest charges.";
+            this.setResult2(lessResult);
+        }
+    }
 };
 
 /**
@@ -117,25 +121,36 @@ PayoffCalculator.prototype.doMonthlyPayment = function () {
     var monthlyCharges = this.getMonthlyCharges();
     var monthlyPayment = roundMoney(this.calculateMonthlyPayment(apr, principal, monthlyCharges, payoffMonths));
     var totalInterest = roundMoney(this.calculateTotalInterest(principal, monthlyPayment, monthlyCharges, apr, payoffMonths));
+    var result = '';
+    var lessResult = '';
 
     if(monthlyCharges >= monthlyPayment) {
+        result += "<p>Your Desired Monthly Payment is less than the interest you owe. With these values, you will never be able to pay off your balance.</p>";
+        result += "<p>Please increase the Desired Monthly Payment and try again.</p>";
+        this.setResult(result);
         this.setRetry(true);
     }
     else {
-        this.setRetry(false);
-    }
-    /*
-     var lessPayoffMonths = payoffMonths - 2;
-     var lessMonthlyPayment = (intRate * principal) / (1 - (Math.pow(1 + intRate, -lessPayoffMonths)));
-     var lessTotalInterest = Math.round((lessPayoffMonths * lessMonthlyPayment) - principal);
-     lessTotalInterest = totalInterest - lessTotalInterest;
-     lessMonthlyPayment = Math.round(lessMonthlyPayment - monthlyCharges);
 
-     if (lessPayoffMonths > 0) {
-     this.setLessTotalInterest(lessTotalInterest);
-     this.setLessMonthlyPayment(lessMonthlyPayment);
-     }
-     */
+        result = "<p>At your current rate of spending, it will take payments of <strong>" + toCurrency(monthlyPayment) + "</strong> per month to pay off your credit card balance in <strong>" + payoffMonths + "</strong> months.</p>";
+        result += "<p>If you were to pay off your debt immediately, you could avoid <strong>" + toCurrency(totalInterest) + "</strong> in interest costs.</p>";
+
+        //calc monthly payment if payoffMonths was 2 months less
+        var lessPayoffMonths = payoffMonths - 2;
+        var lessMonthlyPayment = (toMpr(apr) * principal) / (1 - (Math.pow(1 + toMpr(apr), -lessPayoffMonths)));
+        var lessTotalInterest = Math.round((lessPayoffMonths * lessMonthlyPayment) - principal);
+        lessTotalInterest = totalInterest - lessTotalInterest;
+        lessMonthlyPayment = Math.round(lessMonthlyPayment + monthlyCharges);
+
+        this.setResult(result);
+        this.setRetry(false);
+
+        if (lessPayoffMonths > 0) {
+            lessResult += "Paying off your balance 2 months earlier will increase your monthly payment to <strong>" + toCurrency(lessMonthlyPayment) + "</strong>,";
+            lessResult += " but it will save you <strong>" + toCurrency(lessTotalInterest) + "</strong> in interest charges in the long run.";
+            this.setResult2(lessResult);
+        }
+    }
 };
 
 /**

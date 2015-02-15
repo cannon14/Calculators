@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/siteStyles.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/calculators.css">
 
     <script src="vendor/jquery-1.11.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -29,7 +29,12 @@
                 }, 10);
             });
 
-            $('#myTab a').click(function (e) {
+            $('#calculate_button').click(function () {
+                $('.nav-tabs > li').removeClass('disabled');
+                $('.nav-tabs > .active').next('li').find('a').trigger('click');
+            });
+
+            $('.nav-tabs a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
             });
@@ -39,21 +44,22 @@
 
 <body ng-controller="MinimumPaymentController">
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 text-center title">Minimum Payment Calculator</div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-center subtitle">The True Cost Of Paying The Minimum</div>
-    </div>
-
 
     <div class="row">
-        <div class="col-sm-12">
-            <ul class="nav nav-tabs" id="myTab">
+        <div class="title col-xs-24 text-center">Minimum Payment Calculator</div>
+    </div>
+
+    <div class="row">
+        <div class="subtitle col-xs-24 text-center">The true cost of paying the minimum.</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-24">
+            <ul class="nav nav-tabs">
                 <li class="active"><a href="#input">Input</a></li>
-                <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
-                <li><a href="#table" id="tableTab" ng-show="showTabs == true">Table</a></li>
-                <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                <li class="disabled"><a href="#result" id="resultTab">Result</a></li>
+                <li class="disabled"><a href="#table" id="tableTab">Table</a></li>
+                <li class="disabled"><a href="#graph" id="graphTab">Graph</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
@@ -62,138 +68,165 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-16 col-md-16">
+        <div class="col-xs-24 col-sm-24">
             <div class="tab-content">
                 <div class="tab-pane active" id="input">
-                    <div class='row'>
-                        <div class='col-xs-24 col-sm-24'>
-                            <form name="minimum_payment_form" role="form">
+                    <div class="row">
+                        <div class="col-xs-24">
+                            <form name="minimum_payment_form" novalidate role="form">
+
                                 <div class="form-group">
                                     <label for="current_balance" class="control-label">
                                         <span class="text-danger">1.</span> Current Balance:
                                     </label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="current_balance"
-                                           id="current_balance"
-                                           placeholder="0.00"
-                                           ng-model="current_balance"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
-                                           required>
 
-                                    <div class="custom-error text-center"
-                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.current_balance.$touched">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">$</div>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="current_balance"
+                                                   id="current_balance"
+                                                   value="1000.00"
+                                                   ng-model="current_balance"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                   required
+                                                   select-on-click>
+                                        </div>
+                                        <!--input-group-->
+
+                                        <div class="custom-error text-center"
+                                             ng-show="minimum_payment_form.$submitted || minimum_payment_form.current_balance.$touched">
                                         <span class="alert-danger"
                                               ng-show="minimum_payment_form.current_balance.$error.required">Principal Amount Required!</span>
                                         <span class="alert-danger"
                                               ng-show="minimum_payment_form.current_balance.$error.pattern">Enter Dollar Amounts Only!</span>
-                                    </div>
+                                        </div>
                                 </div>
+                                <!--form-group-->
 
                                 <div class="form-group">
                                     <label for="interest_rate" class="control-label">
                                         <span class="text-danger">2.</span> Interest Rate (APR)
                                     </label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="interest_rate"
-                                           id="interest_rate" ol-md-12
-                                           placeholder="0.0"
-                                           ng-model="interest_rate"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
-                                           required>
 
-                                    <div class="custom-error text-center"
-                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.interest_rate.$touched">
+                                    <div class="input-group">
+                                            <div class="input-group-addon">%</div>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="interest_rate"
+                                                   id="interest_rate"
+                                                   value="17.0"
+                                                   ng-model="interest_rate"
+                                                   ng-model-options="{updateOn: 'blur'}"
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                   required
+                                                   select-on-click>
+                                        </div>
+                                        <!--input-group-->
+                                        <div class="custom-error text-center"
+                                             ng-show="minimum_payment_form.$submitted || minimum_payment_form.interest_rate.$touched">
                                         <span class="alert-danger"
                                               ng-show="minimum_payment_form.interest_rate.$error.required">Interest Rate Required!</span>
                                         <span class="alert-danger"
                                               ng-show="minimum_payment_form.interest_rate.$error.pattern">Enter Numeric Percentage Only!</span>
-                                    </div>
+                                        </div>
                                 </div>
+                                <!--form-group-->
 
                                 <div class="form-group">
                                     <label class="control-label">
-                                        <span class="text-danger">3. * </span> What are the
-                                        components of your minimum
-                                        payment calculation?
+                                        <span class="text-danger">3.* </span> What are the components of your minimum payment calculation?
                                     </label>
                                 </div>
+                                <!--form-group-->
+
                                 <div class="form-group">
-                                    <label for="percentage_of_balance" ol-md-12class="control-label">
+                                    <label for="percentage_of_balance" class="control-label">
                                         <span class="text-danger">3a.</span> Percentage of Balance:
                                     </label>
 
-                                    <input type="text"
-                                           class="form-control"
-                                           name="percentage_of_balance"
-                                           id="percentage_of_balance"
-                                           placeholder="0.0"
-                                           ng-model="percentage_of_balance"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
-                                           required>
-
-                                    <div class="custom-error text-center"
-                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.percentage_of_balance.$touched">
-                                        <span class="alert-danger"
-                                              ng-show="minimum_payment_form.percentage_of_balance.$error.pattern">Enter Numeric Percentage Only!</span>
-                                    </div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">%</div>
+                                            <select class="form-control"
+                                                    name="percentage_of_balance"
+                                                    id="percentage_of_balance"
+                                                    ng-model="percentage_of_balance"
+                                                    ng-model-options="{updateOn: 'blur'}"
+                                                    required>
+                                                <option value="1">1</option>
+                                                <option value="1.5">1.5</option>
+                                                <option value="2">2</option>
+                                                <option value="2.5">2.5</option>
+                                                <option value="3">3</option>
+                                                <option value="3.5" selected>3.5</option>
+                                                <option value="4">4</option>
+                                                <option value="4.5">4.5</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
                                 </div>
+                                <!--form-group-->
 
                                 <div class="form-group">
                                     <label for="minimum_dollar_amount" class="control-label">
                                         <span class="text-danger">3b.</span>
                                         Minimum Dollar Amount:
                                     </label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="minimum_dollar_amount"
-                                           id="minimum_dollar_amount"
-                                           placeholder="0.00"
-                                           ng-model="minimum_dollar_amount"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
-                                           required>
 
-                                    <div class="custom-error text-center"
-                                         ng-show="minimum_payment_form.$submitted || minimum_payment_form.minimum_dollar_amount.$touched">
-                                        <span class="alert-danger"
-                                              ng-show="minimum_payment_form.minimum_dollar_amount.$error.pattern">Enter Dollar Amounts Only!</span>
-                                    </div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">$</div>
+                                            <select type="text"
+                                                    class="form-control"
+                                                    name="minimum_dollar_amount"
+                                                    id="minimum_dollar_amount"
+                                                    ng-model="minimum_dollar_amount"
+                                                    ng-model-options="{updateOn: 'blur'}"
+                                                    required>
+                                                <option value="10">10.00</option>
+                                                <option value="15">15.00</option>
+                                                <option value="20">20.00</option>
+                                                <option value="25" selected>25.00</option>
+                                                <option value="30">30.00</option>
+                                                <option value="35">35.00</option>
+                                                <option value="40">40.00</option>
+                                                <option value="45">45.00</option>
+                                                <option value="50">50.00</option>
+                                            </select>
+                                        </div>
                                 </div>
+                                <!--form-group-->
 
                                 <div class="form-group">
-                                    <div class="col-xs-24 col-sm-24 text-center">
                                         <button type="button" id="calculate_button"
-                                                class="btn btn-default center-block calculator_button"
-                                                ng-click="calculate()"
-                                                ng-disabled="minimum_payment_form.$invalid">
+                                                class="btn btn-danger btn-block"
+                                                ng-click="calculate()">
                                             Calculate
                                         </button>
-                                    </div>
                                 </div>
+                                <!--form-group-->
                             </form>
                         </div>
-                        <!--col-lg-->
+                        <!--column-->
                     </div>
                     <!--row-->
 
                     <br>
 
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24 note">
+                        <div class="col-xs-24 note">
                             <span class="text-danger">* </span>Your account agreement or monthly
                             statement will contain
                             language similar to "your minimum payment is 3% of your balance or $25,
                             whichever isol-md-12
                             greater." These are the values you will need to enter in 3(a) and 3(b).
                         </div>
+                        <!--column-->
                     </div>
+                    <!--row-->
                 </div>
                 <!--input-->
+
                 <div class="tab-pane" id="result">
                     <div class="row">
                         <div class="col-xs-24 col-sm-24">
@@ -214,6 +247,9 @@
                             </p>
                         </div>
                     </div>
+
+                    <br>
+
                     <div class="row">
                         <div class="col-xs-24 col-sm-24">
                             <button class="btn btn-danger btn-block"
@@ -223,10 +259,12 @@
                         </div>
                     </div>
                 </div>
+                <!--result-->
+
                 <div class="tab-pane" id="table">
                     <div class="table-responsive scrolling-table">
                         <table
-                                class="table table-condensed table-striped table-bordered table-hover">
+                            class="table table-condensed table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>Month</th>
@@ -251,9 +289,13 @@
                         </table>
                     </div>
                 </div>
+                <!--table-->
+
                 <div class="tab-pane" id="graph">
                     <div id="high_chart"></div>
                 </div>
+                <!--graph-->
+
                 <div class="tab-pane" id="about">
                     <div class="row">
                         <div class="col-xs-24 col-sm-24">
@@ -283,9 +325,13 @@
                         </div>
                     </div>
                 </div>
+                <!--about-->
             </div>
+            <!--tab-content-->
         </div>
+        <!--column-->
     </div>
+    <!--row-->
 </div>
 <!--container-->
 </body>

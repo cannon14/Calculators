@@ -29,7 +29,12 @@
                 }, 10);
             });
 
-            $('#myTab a').click(function (e) {
+            $('#calculate_button').click(function () {
+                $('.nav-tabs > li').removeClass('disabled');
+                $('.nav-tabs > .active').next('li').find('a').trigger('click');
+            });
+
+            $('.nav-tabs a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
             });
@@ -39,20 +44,22 @@
 
 <body ng-controller="PayoffController">
 <div class="container">
+
     <div class="row">
-        <div class="title col-md-12 text-center">Balance Payoff Calculator</div>
-    </div>
-    <div class="row">
-        <div class="subtitle col-md-12 text-center">What will it take to pay off my current balance?</div>
+        <div class="title col-xs-24 text-center">Balance Payoff Calculator</div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs" id="myTab">
+        <div class="subtitle col-xs-24 text-center">What will it take to pay off my current balance?</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-24">
+            <ul class="nav nav-tabs">
                 <li class="active"><a href="#input">Input</a></li>
-                <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
-                <li><a href="#table" id="tableTab" ng-show="showTabs == true">Table</a></li>
-                <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                <li class="disabled"><a href="#result" id="resultTab">Result</a></li>
+                <li class="disabled"><a href="#table" id="tableTab">Table</a></li>
+                <li class="disabled"><a href="#graph" id="graphTab">Graph</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
@@ -61,27 +68,30 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-16 col-md-16">
+        <div class="col-xs-24">
             <div class="tab-content">
                 <div class="tab-pane active" id="input">
                     <div class='row'>
-                        <div class='col-xs-24 col-sm-24'>
+                        <div class='col-xs-24'>
                             <form name="payoffForm" novalidate role="form">
+
                                 <div class="form-group">
                                     <label for="current_balance" class="control-label">
                                         <span class="text-danger">1. </span>Current Balance:
                                     </label>
 
-                                    <input type="text"
-                                           class="form-control"
-                                           name="current_balance"
-                                           id="current_balance"
-                                           placeholder="0.00"
-                                           ng-model="current_balance"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
-                                           required>
-
+                                    <div class="input-group">
+                                        <div class="input-group-addon">$</div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="current_balance"
+                                               id="current_balance"
+                                               ng-model="current_balance"
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               required
+                                               select-on-click>
+                                    </div>
+                                    <!--input-group-->
                                     <div class="custom-error text-center"
                                          ng-show="payoffForm.$submitted || payoffForm.current_balance.$touched">
 															<span class="alert-danger"
@@ -96,16 +106,18 @@
                                         <span class="text-danger">2.</span> Interest Rate (APR):
                                     </label>
 
-                                    <input type="text"
-                                           class="form-control"
-                                           name="interest_rate"
-                                           id="interest_rate"
-                                           placeholder="0.0"
-                                           ng-model="interest_rate"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           required
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
-
+                                    <div class="input-group">
+                                        <div class="input-group-addon">%</div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="interest_rate"
+                                               id="interest_rate"
+                                               ng-model="interest_rate"
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               required
+                                               select-on-click>
+                                    </div>
+                                    <!--input-group-->
                                     <div class="custom-error text-center"
                                          ng-show="payoffForm.$submitted || payoffForm.interest_rate.$touched">
 															<span class="alert-danger"
@@ -120,15 +132,17 @@
                                         <span class="text-danger">3.</span> Monthly Charges:
                                     </label>
 
-                                    <input type="text"
-                                           class="form-control"
-                                           name="monthly_charges"
-                                           id="monthly_charges"
-                                           placeholder="0.00"
-                                           ng-model="monthly_charges"
-                                           ng-model-options="{updateOn: 'blur'}"
-                                           ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
-
+                                    <div class="input-group">
+                                        <div class="input-group-addon">$</div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="monthly_charges"
+                                               id="monthly_charges"
+                                               ng-model="monthly_charges"
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               select-on-click>
+                                    </div>
+                                    <!--input-group-->
                                     <div class="custom-error text-center"
                                          ng-show="payoffForm.$submitted || payoffForm.monthly_charges.$touched">
 															<span class="alert-danger"
@@ -136,29 +150,28 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
-                                        <div class="form-group">
-                                            <label for="months_to_payoff" class="control-label">
-                                                <span class="text-danger">4a. </span>
-                                                Desired Months to Pay Off:
-                                            </label>
+                                <div class="form-group">
+                                    <label for="months_to_payoff" class="control-label">
+                                        <span class="text-danger">4a. </span>
+                                        Desired Months to Pay Off:
+                                    </label>
 
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="months_to_payoff"
-                                                   id="months_to_payoff"
-                                                   placeholder="0"
-                                                   ng-model="months_to_payoff"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">#</div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="months_to_payoff"
+                                               id="months_to_payoff"
+                                               ng-click="monthsToPayoffClicked()"
+                                               ng-model="months_to_payoff"
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               select-on-click>
+                                    </div>
 
-                                            <div class="custom-error text-center"
-                                                 ng-show="payoffForm.$submitted || payoffForm.months_to_payoff.$touched">
+                                    <div class="custom-error text-center"
+                                         ng-show="payoffForm.$submitted || payoffForm.months_to_payoff.$touched">
                                                 <span class="alert-danger"
                                                       ng-show="payoffForm.months_to_payoff.$error.pattern">Enter Numeric Value Only!</span>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -172,46 +185,38 @@
 
                                 <br>
 
-                                <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
-                                        <div class="form-group">
-                                            <label for="desired_monthly_payment"
-                                                   class="control-label">
-                                                <span class="text-danger">4b. </span>
-                                                Desired Monthly Payment:
-                                            </label>
+                                <div class="form-group">
+                                    <label for="desired_monthly_payment"
+                                           class="control-label">
+                                        <span class="text-danger">4b. </span>
+                                        Desired Monthly Payment:
+                                    </label>
 
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="desired_monthly_payment"
-                                                   id="desired_monthly_payment"
-                                                   placeholder="0.00"
-                                                   ng-model="desired_monthly_payment"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">$</div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="desired_monthly_payment"
+                                               id="desired_monthly_payment"
+                                               ng-click="monthlyPaymentClicked()"
+                                               ng-model="desired_monthly_payment"
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               select-on-click>
+                                    </div>
 
-                                            <div class="custom-error text-center"
-                                                 ng-show="payoffForm.$submitted || payoffForm.desired_monthly_payment.$touched">
+                                    <div class="custom-error text-center"
+                                         ng-show="payoffForm.$submitted || payoffForm.desired_monthly_payment.$touched">
                                                 <span class="alert-danger"
                                                       ng-show="payoffForm.desired_monthly_payment.$error.pattern">Enter Dollar Amounts Only!</span>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div><!--row-->
-
-                                <div class="row">
-                                    <div class="col-xs-24 col-sm-24 text-center">
-                                        <div class="form-group">
-                                            <button type="submit" id="calculate_button"
-                                                    class="btn btn-default center-block calculator_button"
-                                                    ng-click="calculate()"
-                                                    ng-disabled="payoffForm.$invalid">Calculate
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!--col-xs-24-->
                                 </div>
-                                <!--row-->
+
+                                <div class="form-group">
+                                    <button type="submit" id="calculate_button"
+                                            class="btn btn-danger btn-block"
+                                            ng-click="calculate()">Calculate
+                                    </button>
+                                </div>
                             </form>
                         </div>
                         <!--col-lg-12-->
@@ -222,56 +227,29 @@
                 <div class="tab-pane" id="result">
                     <div class="row">
                         <div class="col-xs-24 col-sm-24">
-                            <div ng-if="payoff == true">
-                                <div ng-if="retry == true">
-                                    <p>Your Desired Monthly Payment is less than the interest you
-                                        owe. With these
-                                        values, you will never be able to pay off your balance.</p>
-
-                                    <p>Please increase the Desired Monthly Payment and try
-                                        again.</p>
-                                </div>
-
-                                <div ng-if="retry == false">
-                                    <p>At your current rate of spending, it will take <strong>{{
-                                        payoffMonths
-                                        }}</strong> monthly payments of <strong>{{
-                                        monthlyPayment }}</strong> to pay off
-                                        your credit card balance.</p>
-
-                                    <p>If you were to pay off your debt immediately, you could avoid
-                                        <strong>{{
-                                            totalInterest }}</strong> in interest costs.
-
-                                    <p>
+                            <div class="row">
+                                <div class="col-xs-24">
+                                    <div ng-bind-html="result"></div>
                                 </div>
                             </div>
 
-                            <div ng-if="monthly == true">
-                                <div ng-if="retry == true">
-                                    <p>Your Desired Monthly Payment is less than the interest you
-                                        owe. With these
-                                        values, you will never be able to pay off your balance.</p>
-
-                                    <p>Please increase the Desired Monthly Payment and try
-                                        again.</p>
-                                </div>
-
-                                <div ng-if="retry == false">
-                                    <p>At your current rate of spending, it will take payments of
-                                        <strong>{{
-                                            monthlyPayment }}</strong> per month to pay off your
-                                        credit card balance in
-                                        <strong>{{ payoffMonths }}</strong> months.</p>
-
-                                    <p>If you were to pay off your debt immediately, you could avoid
-                                        <strong>{{
-                                            totalInterest }}</strong> in interest costs.</p>
+                            <div class="row text-center" ng-show="retry == false">
+                                <div class="col-xs-24">
+                                    <h5 class="save_money">Save Money</h5>
+                                    <hr class="save_money_line">
                                 </div>
                             </div>
 
+                            <div class="row" ng-show="retry == false">
+                                <div class="col-xs-24">
+                                    <div ng-bind-html="result2"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <br>
+
                     <div class="row">
                         <div class="col-xs-24 col-sm-24">
                             <button class="btn btn-danger btn-block"
@@ -284,7 +262,7 @@
                 <div class="tab-pane" id="table">
                     <div class="table-responsive scrolling-table">
                         <table
-                                class="table table-condensed table-striped table-bordered table-hover">
+                            class="table table-condensed table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>Month</th>

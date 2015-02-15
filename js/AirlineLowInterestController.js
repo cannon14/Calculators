@@ -1,31 +1,62 @@
 var calculatorApp = angular.module('CalculatorApplication', []);
 
+calculatorApp.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('click', function () {
+                this.select();
+            });
+        }
+    };
+});
+
 calculatorApp.controller('AirlineLowInterestController', ['$scope', '$sce', function ($scope, $sce) {
 
     var calc = new AirlineLowInterestCalculator();
 
+    $scope.principal = 5000.00;
+    $scope.years = 3;
+    $scope.charges = 350.00;
+    $scope.payment = 450.00;
+    $scope.airline_intro_rate = 4.0;
+    $scope.low_interest_intro_rate = 2.0;
+    $scope.airline_intro_term = 12;
+    $scope.low_interest_intro_term = 12;
+    $scope.airline_regular_rate = 10.0;
+    $scope.low_interest_regular_rate = 9.0;
+    $scope.airline_intro_annual_fee = 0.00;
+    $scope.low_interest_intro_annual_fee = 0.00;
+    $scope.airline_regular_annual_fee = 50.0;
+    $scope.low_interest_regular_annual_fee = 25.0;
+    $scope.miles_per_dollar = 1;
+    $scope.miles_to_apply = 10000.00;
+    $scope.max_yearly_miles = 60000.00;
+    $scope.miles_for_free_ticket = 25000;
+    $scope.cost_of_ticket = 300.00;
+
     $scope.calculate = function () {
 
         //Retrieve the variables from the view...give them default values in case the user hits calculate.
-        var principal = $scope.principal ? $scope.principal : 5000.00;
-        var years = $scope.years ? $scope.years : 3;
-        var charges = $scope.charges ? $scope.charges : 350.00;
-        var payment = $scope.payment ? $scope.payment : 450.00;
-        var airline_intro_rate = $scope.airline_intro_rate ? $scope.airline_intro_rate : 4.0;
-        var low_interest_intro_rate = $scope.low_interest_intro_rate ? $scope.low_interest_intro_rate : 2.0;
-        var airline_intro_term = $scope.airline_intro_term ? $scope.airline_intro_term : 12;
-        var low_interest_intro_term = $scope.low_interest_intro_term ? $scope.low_interest_intro_term : 12;
-        var airline_regular_rate = $scope.airline_regular_rate ? $scope.airline_regular_rate : 10.0;
-        var low_interest_regular_rate = $scope.low_interest_regular_rate ? $scope.low_interest_regular_rate : 9.0;
+        var principal = $scope.principal ? $scope.principal : 0.00;
+        var years = $scope.years ? $scope.years : 0;
+        var charges = $scope.charges ? $scope.charges : 0.00;
+        var payment = $scope.payment ? $scope.payment : 0.00;
+        var airline_intro_rate = $scope.airline_intro_rate ? $scope.airline_intro_rate : 0.0;
+        var low_interest_intro_rate = $scope.low_interest_intro_rate ? $scope.low_interest_intro_rate : 0.0;
+        var airline_intro_term = $scope.airline_intro_term ? $scope.airline_intro_term : 0;
+        var low_interest_intro_term = $scope.low_interest_intro_term ? $scope.low_interest_intro_term : 0;
+        var airline_regular_rate = $scope.airline_regular_rate ? $scope.airline_regular_rate : 0.0;
+        var low_interest_regular_rate = $scope.low_interest_regular_rate ? $scope.low_interest_regular_rate : 0.0;
         var airline_intro_annual_fee = $scope.airline_intro_annual_fee ? $scope.airline_intro_annual_fee : 0.00;
         var low_interest_intro_annual_fee = $scope.low_interest_intro_annual_fee ? $scope.low_interest_intro_annual_fee : 0.00;
-        var airline_regular_annual_fee = $scope.airline_regular_annual_fee ? $scope.airline_regular_annual_fee : 50.0;
-        var low_interest_regular_annual_fee = $scope.low_interest_regular_annual_fee ? $scope.low_interest_regular_annual_fee : 25.0;
-        var miles_per_dollar = $scope.miles_per_dollar ? $scope.miles_per_dollar : 2;
-        var miles_to_apply = $scope.miles_to_apply ? $scope.miles_to_apply : 10000.00;
-        var max_yearly_miles = $scope.max_yearly_miles ? $scope.max_yearly_miles : 60000.00;
-        var miles_for_free_ticket = $scope.miles_for_free_ticket ? $scope.miles_for_free_ticket : 25000;
-        var cost_of_ticket = $scope.cost_of_ticket ? $scope.cost_of_ticket : 300;
+        var airline_regular_annual_fee = $scope.airline_regular_annual_fee ? $scope.airline_regular_annual_fee : 0.0;
+        var low_interest_regular_annual_fee = $scope.low_interest_regular_annual_fee ? $scope.low_interest_regular_annual_fee : 0.0;
+        var miles_per_dollar = $scope.miles_per_dollar ? $scope.miles_per_dollar : 0;
+        var miles_to_apply = $scope.miles_to_apply ? $scope.miles_to_apply : 0.00;
+        var max_yearly_miles = $scope.max_yearly_miles ? $scope.max_yearly_miles : 0.00;
+        var miles_for_free_ticket = $scope.miles_for_free_ticket ? $scope.miles_for_free_ticket : 0;
+        var cost_of_ticket = $scope.cost_of_ticket ? $scope.cost_of_ticket : 0.00;
 
         calc.setPrincipal(principal);
         calc.setYears(years);
@@ -59,7 +90,6 @@ calculatorApp.controller('AirlineLowInterestController', ['$scope', '$sce', func
         $scope.numOfYears = calc.getYears();
 
         $scope.displayChart();
-        $scope.showTabs = true;
     };
 
     $scope.displayChart = function () {
@@ -83,7 +113,7 @@ calculatorApp.controller('AirlineLowInterestController', ['$scope', '$sce', func
                     enabled: true,
                     style: {
                         fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
                     }
                 }
             },
@@ -110,10 +140,7 @@ calculatorApp.controller('AirlineLowInterestController', ['$scope', '$sce', func
                     grouping: 'true',
                     dataLabels: {
                         enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                        style: {
-                            textShadow: '0 0 3px black'
-                        }
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'black'
                     }
                 }
             },

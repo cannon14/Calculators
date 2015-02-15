@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.css">
-
-    <link rel="stylesheet" href="css/siteStyles.css">
+    <link rel="stylesheet" href="css/calculators.css">
 
     <script src="vendor/jquery-1.11.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -29,7 +28,12 @@
                 }, 10);
             });
 
-            $('#myTab a').click(function (e) {
+            $('#calculate_button').click(function () {
+                $('.nav-tabs > li').removeClass('disabled');
+                $('.nav-tabs > .active').next('li').find('a').trigger('click');
+            });
+
+            $('.nav-tabs a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
             });
@@ -40,13 +44,13 @@
 <body ng-controller="BalanceTransferController">
 <div class="container">
     <div class="row">
-        <div class="col-sm-16 col-md-16 text-center title">Balance Transfer Calculator</div>
+        <div class="col-xs-24 text-center title">Balance Transfer Calculator</div>
     </div>
     <div class="row">
-        <div class="col-sm-16 col-md-16">
+        <div class="col-xs-24">
             <div class="cal-hldr" ng-controller="BalanceTransferController">
                 <div class="row">
-                    <div class="col-sm-16 col-md-16 subtitle">How much could I save by transferring my
+                    <div class="col-xs-24 subtitle">How much could I save by transferring my
                         balances?
                     </div>
                 </div>
@@ -54,11 +58,11 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-sm-16 col-md-16">
-                        <ul class="nav nav-tabs" id="myTab">
+                    <div class="col-xs-24">
+                        <ul class="nav nav-tabs">
                             <li class="active"><a href="#input">Input</a></li>
-                            <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
-                            <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                            <li class="disabled"><a href="#result" id="resultTab">Result</a></li>
+                            <li class="disabled"><a href="#graph" id="graphTab">Graph</a></li>
                             <li><a href="#about">About</a></li>
                         </ul>
                     </div>
@@ -67,35 +71,39 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-sm-16 col-md-16">
+                    <div class="col-xs-24">
                         <div class="tab-content">
                             <div class="tab-pane active" id="input">
                                 <div class="row">
-                                    <div class="col-sm-24 col-md-24">
+                                    <div class="col-xs-24">
                                         <p class="bt_section_title">Regarding the Card Your're Transferring
                                             to:</p>
                                     </div>
                                 </div>
                                 <!--row-->
 
-                                <form name="balanceTransferForm" class="form-horizontal" novalidate role="form">
+                                <form name="balanceTransferForm" novalidate role="form">
 
                                     <div class="form-group">
-                                        <label for="intro_int_rate" class="col-xs-24 col-sm-24 control-label">
+                                        <label for="intro_int_rate" class="col-xs-24 control-label">
                                             <span class="text-danger">1.*</span> Introductory Interest Rate
                                             (APR)
                                         </label>
 
-                                        <div class="col-xs-24 col-sm-24">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="intro_int_rate"
-                                                   id="intro_int_rate"
-                                                   placeholder="0.0"
-                                                   ng-model="intro_int_rate"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        <div class="col-xs-24">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">%</div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="intro_int_rate"
+                                                       id="intro_int_rate"
+                                                       placeholder="0.0"
+                                                       ng-model="intro_int_rate"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       required
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
+                                            </div>
                                         </div>
                                         <div class="custom-error text-center"
                                              ng-show="balanceTransferForm.$submitted || balanceTransferForm.intro_int_rate.$touched">
@@ -107,20 +115,24 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="intro_term" class="col-xs-24 col-sm-24 control-label">
+                                        <label for="intro_term" class="col-xs-24 control-label">
                                             <span class="text-danger">2.*</span> Introductory Term (months)
                                         </label>
 
-                                        <div class="col-xs-24 col-sm-24">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="intro_term"
-                                                   id="intro_term"
-                                                   placeholder="0"
-                                                   ng-model="intro_term"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        <div class="col-xs-24">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">#</div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="intro_term"
+                                                       id="intro_term"
+                                                       placeholder="0"
+                                                       ng-model="intro_term"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       required
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
+                                            </div>
                                         </div>
                                         <div class="custom-error text-center"
                                              ng-show="balanceTransferForm.$submitted || balanceTransferForm.intro_term.$touched">
@@ -132,20 +144,24 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="regular_apr" class="col-xs-12 col-sm-12 control-label">
+                                        <label for="regular_apr" class="col-xs-12 control-label">
                                             <span class="text-danger">3.*</span> Regular Interest Rate (APR)
                                         </label>
 
-                                        <div class="col-xs-24 col-sm-24">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="regular_apr"
-                                                   id="regular_apr"
-                                                   placeholder="0.0"
-                                                   ng-model="regular_apr"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        <div class="col-xs-24">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">%</div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="regular_apr"
+                                                       id="regular_apr"
+                                                       placeholder="0.0"
+                                                       ng-model="regular_apr"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       required
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
+                                            </div>
                                         </div>
                                         <div class="custom-error text-center"
                                              ng-show="balanceTransferForm.$submitted || balanceTransferForm.regular_apr.$touched">
@@ -157,20 +173,24 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="annual_fee" class="col-xs-24 col-sm-24 control-label">
+                                        <label for="annual_fee" class="col-xs-24 control-label">
                                             <span class="text-danger">4.*</span> Annual Fee
                                         </label>
 
-                                        <div class="col-xs-24 col-sm-24">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="annual_fee"
-                                                   id="annual_fee"
-                                                   placeholder="0.00"
-                                                   ng-model="annual_fee"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        <div class="col-xs-24">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">$</div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="annual_fee"
+                                                       id="annual_fee"
+                                                       placeholder="0.00"
+                                                       ng-model="annual_fee"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       required
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
+                                            </div>
                                         </div>
                                         <div class="custom-error text-center"
                                              ng-show="balanceTransferForm.$submitted || balanceTransferForm.annual_fee.$touched">
@@ -183,21 +203,25 @@
 
                                     <div class="form-group">
                                         <label for="percent_of_balance_fee"
-                                               class="col-xs-24 col-sm-24 control-label">
+                                               class="col-xs-24 control-label">
                                             <span class="text-danger">5.*</span> Balance Transfer Fee = % of
                                             Balance
                                         </label>
 
-                                        <div class="col-xs-24 col-sm-24">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="percent_of_balance_fee"
-                                                   id="percent_of_balance_fee"
-                                                   placeholder="0.00"
-                                                   ng-model="percent_of_balance_fee"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        <div class="col-xs-24">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">%</div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="percent_of_balance_fee"
+                                                       id="percent_of_balance_fee"
+                                                       placeholder="0.00"
+                                                       ng-model="percent_of_balance_fee"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       required
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
+                                            </div>
                                         </div>
                                         <div class="custom-error text-center"
                                              ng-show="balanceTransferForm.$submitted || balanceTransferForm.percent_of_balance_fee.$touched">
@@ -210,21 +234,25 @@
 
                                     <div class="form-group">
                                         <label for="maximum_balance_fee"
-                                               class="col-xs-24 col-sm-24 control-label">
+                                               class="col-xs-24 control-label">
                                             <span class="text-danger">6.</span> Balance Transfer Fee = Maximum
                                             Fee
                                         </label>
 
-                                        <div class="col-xs-24 col-sm-24">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   name="maximum_balance_fee"
-                                                   id="maximum_balance_fee"
-                                                   placeholder="0.00"
-                                                   ng-model="maximum_balance_fee"
-                                                   ng-model-options="{updateOn: 'blur'}"
-                                                   required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                        <div class="col-xs-24">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">$</div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="maximum_balance_fee"
+                                                       id="maximum_balance_fee"
+                                                       placeholder="0.00"
+                                                       ng-model="maximum_balance_fee"
+                                                       ng-model-options="{updateOn: 'blur'}"
+                                                       required
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
+                                            </div>
                                         </div>
                                         <div class="custom-error text-center"
                                              ng-show="balanceTransferForm.$submitted || balanceTransferForm.maximum_balance_fee.$touched">
@@ -234,38 +262,38 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-xs-24 col-sm-24">
+                                        <div class="col-xs-24">
                                             <p class="bt_section_title">Regarding Your Current CreditCard(s):</p>
                                         </div>
                                     </div>
                                     <!--row-->
 
                                     <div class="row">
-                                        <div class="col-xs-4 col-sm-4">
+                                        <div class="col-xs-4">
                                             <span class="bt_col_title">Card</span>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6">
+                                        <div class="col-xs-6">
                                             <span class="bt_col_title">Balance</span>
                                         </div>
 
-                                        <div class="col-xs-offset-1 col-sm-offset-1 col-xs-6 col-sm-6">
+                                        <div class="col-xs-offset-1 col-xs-6">
                                             <span class="bt_col_title">Interest Rate</span>
                                         </div>
 
-                                        <div class="col-xs-offset-1 col-sm-offset-1 col-xs-6 col-sm-6">
-                                            <span class="bt_col_title">Monthly</span>
+                                        <div class="col-xs-offset-1 col-xs-6">
+                                            <span class="bt_col_title">Monthly Payment</span>
                                         </div>
                                     </div>
                                     <!--row-->
 
                                     <div class="form-group">
                                         <label for="balance1"
-                                               class="col-xs-4 col-sm-4 control-label">
+                                               class="col-xs-4 control-label">
                                             <span class="text-danger">1.*</span>
                                         </label>
 
-                                        <div class="col-xs-6 col-sm-6">
+                                        <div class="col-xs-6">
                                             <input type="text"
                                                    class="form-control"
                                                    name="balance"
@@ -273,11 +301,12 @@
                                                    placeholder="0.00"
                                                    ng-model="balance1"
                                                    ng-model-options="{updateOn: 'blur'}"
+                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
                                                    required
-                                                   ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                   select-on-click>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -286,11 +315,12 @@
                                                        placeholder="0.00"
                                                        ng-model="apr1"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -299,7 +329,8 @@
                                                        placeholder="0.00"
                                                        ng-model="payment1"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
@@ -327,11 +358,11 @@
 
                                     <div class="form-group">
                                         <label for="balance2"
-                                               class="col-xs-4 col-sm-4 control-label">
+                                               class="col-xs-4 control-label">
                                             <span class="text-danger">2.</span>
                                         </label>
 
-                                        <div class="col-xs-6 col-sm-6">
+                                        <div class="col-xs-6">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -340,11 +371,12 @@
                                                        placeholder="0.00"
                                                        ng-model='balance2'
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -353,11 +385,12 @@
                                                        placeholder="0.00"
                                                        ng-model="apr2"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -366,7 +399,8 @@
                                                        placeholder="0.00"
                                                        ng-model="payment2"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
                                     </div>
@@ -374,11 +408,11 @@
 
                                     <div class="form-group">
                                         <label for="balance3"
-                                               class="col-xs-4 col-sm-4 control-label">
+                                               class="col-xs-4 control-label">
                                             <span class="text-danger">3.</span>
                                         </label>
 
-                                        <div class="col-xs-6 col-sm-6">
+                                        <div class="col-xs-6">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -387,11 +421,12 @@
                                                        placeholder="0.00"
                                                        ng-model='balance3'
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -400,11 +435,12 @@
                                                        placeholder="0.00"
                                                        ng-model="apr3"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -413,7 +449,8 @@
                                                        placeholder="0.00"
                                                        ng-model="payment3"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
                                     </div>
@@ -421,11 +458,11 @@
 
                                     <div class="form-group">
                                         <label for="balance4"
-                                               class="col-xs-4 col-sm-4 control-label">
+                                               class="col-xs-4 control-label">
                                             <span class="text-danger">4.</span>
                                         </label>
 
-                                        <div class="col-xs-6 col-sm-6">
+                                        <div class="col-xs-6">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -434,11 +471,12 @@
                                                        placeholder="0.00"
                                                        ng-model='balance4'
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -447,11 +485,12 @@
                                                        placeholder="0.00"
                                                        ng-model="apr4"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-6 col-sm-6 col-xs-offset-1 col-sm-offset-1">
+                                        <div class="col-xs-6 col-xs-offset-1">
                                             <div class="form-group">
                                                 <input type="text"
                                                        class="form-control"
@@ -460,17 +499,18 @@
                                                        placeholder="0.00"
                                                        ng-model="payment4"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
                                             </div>
                                         </div>
-                                    </div><!--form-group-->
+                                    </div>
+                                    <!--form-group-->
 
                                     <div class="form-group">
-                                        <div class='col-xs-24 col-sm-24 text-center'>
+                                        <div class='col-xs-24 text-center'>
                                             <button type="submit" id="calculate_button"
-                                                    class="btn btn-default center-block calculator_button"
-                                                    ng-click="calculate()"
-                                                    ng-disabled="balanceTransferForm.$invalid">Calculate
+                                                    class="btn btn-danger btn-block"
+                                                    ng-click="calculate()">Calculate
                                             </button>
                                         </div>
                                     </div>
@@ -481,7 +521,7 @@
 
                             <div class="tab-pane" id="result">
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <p>By transferring balance, <strong>
                                             <span ng-show="doIt==true">you will save</span>
                                             <span ng-show="doIt==false">you will pay an additional</span>
@@ -501,7 +541,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <button class="btn btn-danger btn-block"
                                                 onclick="window.location = 'http://www.creditcards.com/balance-transfer.php'">
                                             Find a Balance Transfer Card Now!
@@ -516,7 +556,7 @@
 
                             <div class="tab-pane" id="about">
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <p>This calculator calculates the amount of interest you'll save by
                                             transferring existing
                                             balances to a lower rate card. It factors in the fees often

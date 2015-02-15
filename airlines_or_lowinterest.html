@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/siteStyles.css">
+    <link rel="stylesheet" href="css/calculators.css">
 
     <script src="vendor/jquery-1.11.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -30,7 +30,12 @@
                 }, 10);
             });
 
-            $('#myTab a').click(function (e) {
+            $('#calculate_button').click(function () {
+                $('.nav-tabs > li').removeClass('disabled');
+                $('.nav-tabs > .active').next('li').find('a').trigger('click');
+            });
+
+            $('.nav-tabs a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
             });
@@ -40,19 +45,21 @@
 
 <body ng-controller="AirlineLowInterestController">
 <div class="container">
+
     <div class="row">
-        <div class="title col-md-12 text-center">Comparison Calculator</div>
-    </div>
-    <div class="row">
-        <div class="subtitle col-md-12 text-center">Which is better: Airlines or Low Interest Card?</div>
+        <div class="title col-xs-24 text-center">Airlines or Low Interest Comparison Calculator</div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs" id="myTab">
+        <div class="subtitle col-xs-24 text-center">Which is better: Airlines or Low Interest Card?</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-24">
+            <ul class="nav nav-tabs">
                 <li class="active"><a href="#input">Input</a></li>
-                <li><a href="#result" id="resultTab" ng-show="showTabs == true">Result</a></li>
-                <li><a href="#graph" id="graphTab" ng-show="showTabs == true">Graph</a></li>
+                <li class="disabled"><a href="#result" id="resultTab">Result</a></li>
+                <li class="disabled"><a href="#graph" id="graphTab">Graph</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
@@ -60,21 +67,21 @@
 
     <br>
 
-
     <div class="row">
-        <div class="col-sm-16 col-md-16">
+        <div class="col-xs-24">
             <div class="tab-content">
                 <div class="tab-pane active" id="input">
                     <div class='row'>
-                        <div class='col-xs-24 col-sm-24'>
-                            <form name="comparisonForm" class="form-horizontal" novalidate role="form">
+                        <div class='col-xs-24'>
+                            <form name="comparisonForm" novalidate role="form">
 
                                 <div class="form-group">
-                                    <label for="principal" class="col-xs-12 col-sm-12 text-left control-label">
-                                        <span class="text-danger">1.*</span>Current Balance:
+                                    <label for="principal" class="control-label">
+                                        <span class="text-danger">1.*</span> Current Balance:
                                     </label>
 
-                                    <div class="col-xs-12 col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">$</div>
                                         <input type="text"
                                                class="form-control"
                                                name="principal"
@@ -83,7 +90,8 @@
                                                ng-model="principal"
                                                ng-model-options="{updateOn: 'blur'}"
                                                ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
-                                               required>
+                                               required
+                                               select-on-click>
                                     </div>
 
                                     <div class="custom-error text-center"
@@ -94,11 +102,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="years" class="col-xs-12 col-sm-12 control-label">
+                                    <label for="years" class="control-label">
                                         <span class="text-danger">2.*</span> Years you will use card:
                                     </label>
 
-                                    <div class="col-xs-12 col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">#</div>
                                         <input type="text"
                                                class="form-control"
                                                name="years"
@@ -107,7 +116,8 @@
                                                ng-model="years"
                                                ng-model-options="{updateOn: 'blur'}"
                                                required
-                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               select-on-click>
                                     </div>
                                     <div class="custom-error text-center"
                                          ng-show="comparisonForm.$submitted || comparisonForm.years.$touched">
@@ -117,11 +127,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="charges" class="col-xs-12 col-sm-12 control-label">
+                                    <label for="charges" class="control-label">
                                         <span class="text-danger">3.</span> Monthly Charges:
                                     </label>
 
-                                    <div class="col-xs-12 col-sm-12">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">$</div>
                                         <input type="text"
                                                class="form-control"
                                                name="charges"
@@ -129,7 +140,8 @@
                                                placeholder="0.00"
                                                ng-model="charges"
                                                ng-model-options="{updateOn: 'blur'}"
-                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                               ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                               select-on-click>
                                     </div>
 
                                     <div class="custom-error text-center"
@@ -140,13 +152,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="payment" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="payment" class="control-label">
                                                 <span class="text-danger">4.</span> Estimated monthly payments:
                                             </label>
 
-                                            <div class="col-xs-12 col-sm-12">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">$</div>
                                                 <input type="text"
                                                        class="form-control"
                                                        name="payment"
@@ -154,7 +167,8 @@
                                                        placeholder="0.00"
                                                        ng-model="payment"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -170,20 +184,19 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-offset-12 col-sm-offset-12
-														col-xs-6 col-xm-6 text-center"><strong>Airlines</strong></div>
-                                    <div class="col-xs-6 col-sm-6 text-center"><strong>Low
+                                    <div class="col-xs-offset-12 col-xs-6 text-center"><strong>Airlines</strong></div>
+                                    <div class="col-xs-6 text-center"><strong>Low
                                         Interest</strong></div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="airline_intro_rate" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="airline_intro_rate" class="col-xs-12 control-label">
                                                 <span class="text-danger">5.</span> Introductory interest rate:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="intro_rate"
@@ -191,11 +204,12 @@
                                                        placeholder="0.0"
                                                        ng-model="airline_intro_rate"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="intro_rate"
@@ -203,7 +217,8 @@
                                                        placeholder="0.0"
                                                        ng-model="low_interest_intro_rate"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -219,13 +234,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="airline_intro_term" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="airline_intro_term" class="col-xs-12 control-label">
                                                 <span class="text-danger">6.</span> Introductory term (months):
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="intro_term"
@@ -233,11 +248,12 @@
                                                        placeholder="0"
                                                        ng-model="airline_intro_term"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="intro_term"
@@ -245,7 +261,8 @@
                                                        placeholder="0"
                                                        ng-model="low_interest_intro_term"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -261,13 +278,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="airline_regular_rate" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="airline_regular_rate" class="col-xs-12 control-label">
                                                 <span class="text-danger">7.</span> Regular Interest Rate (APR):
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="regular_rate"
@@ -275,11 +292,12 @@
                                                        placeholder="0.0"
                                                        ng-model="airline_regular_rate"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="regular_rate"
@@ -287,7 +305,8 @@
                                                        placeholder="0.0"
                                                        ng-model="low_interest_regular_rate"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -303,14 +322,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
                                             <label for="airline_intro_annual_fee"
-                                                   class="col-xs-12 col-sm-12 control-label">
+                                                   class="col-xs-12 control-label">
                                                 <span class="text-danger">8.</span> Introductory Annual Fee:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="intro_annual_fee"
@@ -318,11 +337,12 @@
                                                        placeholder="0.00"
                                                        ng-model="airline_intro_annual_fee"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="intro_annual_fee"
@@ -330,7 +350,8 @@
                                                        placeholder="0.00"
                                                        ng-model="low_interest_intro_annual_fee"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -346,14 +367,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
                                             <label for="airline_regular_annual_fee"
-                                                   class="col-xs-12 col-sm-12 control-label">
+                                                   class="col-xs-12 control-label">
                                                 <span class="text-danger">9.</span> Regular Annual Fee:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="regular_annual_fee"
@@ -361,11 +382,12 @@
                                                        placeholder="0.00"
                                                        ng-model="airline_regular_annual_fee"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="regular_annual_fee"
@@ -373,7 +395,8 @@
                                                        placeholder="0.00"
                                                        ng-model="low_interest_regular_annual_fee"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -389,13 +412,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="miles_per_dollar" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="miles_per_dollar" class="col-xs-12 control-label">
                                                 <span class="text-danger">10.</span> Miles earned per dollar spent:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="miles_per_dollar"
@@ -403,7 +426,8 @@
                                                        placeholder="0"
                                                        ng-model="miles_per_dollar"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -419,14 +443,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="miles_to_apply" class="col-xs-12
-																col-sm-12 control-label">
+                                            <label for="miles_to_apply" class="col-xs-12 control-label">
                                                 <span class="text-danger">11.</span> Miles earned for applying:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="miles_to_apply"
@@ -434,7 +457,8 @@
                                                        placeholder="0"
                                                        ng-model="miles_to_apply"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -450,13 +474,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="max_yearly_miles" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="max_yearly_miles" class="col-xs-12 control-label">
                                                 <span class="text-danger">12.</span> Maximum miles earned yearly:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="max_yearly_miles"
@@ -464,7 +488,8 @@
                                                        placeholder="0"
                                                        ng-model="max_yearly_miles"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -480,14 +505,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
                                             <label for="miles_for_free_ticket"
-                                                   class="col-xs-12 col-sm-12 control-label">
+                                                   class="col-xs-12 control-label">
                                                 <span class="text-danger">13.</span> Miles required for 1 free ticket:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="miles_for_free_ticket"
@@ -495,7 +520,8 @@
                                                        placeholder="0"
                                                        ng-model="miles_for_free_ticket"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -509,13 +535,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-24 col-sm-24">
+                                    <div class="col-xs-24">
                                         <div class="form-group">
-                                            <label for="cost_of_ticket" class="col-xs-12 col-sm-12 control-label">
+                                            <label for="cost_of_ticket" class="col-xs-12 control-label">
                                                 <span class="text-danger">14.</span> Regular cost of ticket:
                                             </label>
 
-                                            <div class="col-xs-6 col-sm-6">
+                                            <div class="col-xs-6">
                                                 <input type="text"
                                                        class="form-control"
                                                        name="cost_of_ticket"
@@ -523,7 +549,8 @@
                                                        placeholder="0.00"
                                                        ng-model="cost_of_ticket"
                                                        ng-model-options="{updateOn: 'blur'}"
-                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/">
+                                                       ng-pattern="/^[0-9]+([\,\.][0-9]+)?$/"
+                                                       select-on-click>
 
                                             </div>
 
@@ -536,14 +563,13 @@
                                     </div>
                                 </div>
 
+                                <br>
+
                                 <div class="form-group">
-                                    <div class="col-xs-24 col-sm-24 text-center">
-                                        <button type="submit" id="calculate_button"
-                                                class="btn btn-default center-block calculator_button"
-                                                ng-click="calculate()"
-                                                ng-disabled="comparisonForm.$invalid">Calculate
-                                        </button>
-                                    </div>
+                                    <button type="submit" id="calculate_button"
+                                            class="btn btn-danger btn-block"
+                                            ng-click="calculate()">Calculate
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -555,7 +581,7 @@
 
                 <div class="tab-pane" id="result">
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24">
+                        <div class="col-xs-24">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -590,8 +616,11 @@
                             <div ng-bind-html="result"></div>
                         </div>
                     </div>
+
+                    <br>
+
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24">
+                        <div class="col-xs-24">
                             <button class="btn btn-danger btn-block"
                                     onclick="window.location = 'http://www.creditcards.com/cash-back.php'">
                                 Find a Cash Back Card Now!
@@ -602,7 +631,7 @@
                     <br>
 
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24">
+                        <div class="col-xs-24">
                             <button class="btn btn-danger btn-block"
                                     onclick="window.location = 'http://www.creditcards.com/low-interest.php'">Find a Low
                                 Interest Card Now!
@@ -613,13 +642,13 @@
 
                 <div class="tab-pane" id="graph" style="position:relative">
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24">
+                        <div class="col-xs-24">
                             <div id="high_chart"></div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24">
+                        <div class="col-xs-24">
                             <p>This graph compares your interest and fees, remaining balance, and value of free tickets
                                 earned at the end of the {{numOfYears}} year period.</p>
                         </div>
@@ -627,7 +656,7 @@
                 </div>
                 <div class="tab-pane" id="about">
                     <div class="row">
-                        <div class="col-xs-24 col-sm-24">
+                        <div class="col-xs-24">
                             <p>Airlines cards let you accumulate frequent flier miles when you make purchases. These
                                 cards usually have higher annual fees and higher interest rates compared to other Low
                                 Interest credit cards. If you pay your balance in full each month and owe nothing, the
